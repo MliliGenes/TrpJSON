@@ -1,6 +1,6 @@
 #pragma once
 
-#include "TrpTokenType.hpp"
+#include "TrpJsonType.hpp"
 
 #ifndef TRPVALUE_HPP
 #define TRPVALUE_HPP
@@ -9,8 +9,8 @@ class ITrpJsonValue;
 
 class ITrpJsonValue {
     public:
-        ITrpJsonValue( void );
-        virtual ~ITrpJsonValue( void ) = 0;
+        ITrpJsonValue( void ) {}
+        virtual ~ITrpJsonValue( void ) = default;
         virtual TrpJsonType getType( void ) const = 0;
 };
 

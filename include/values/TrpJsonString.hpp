@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include "TrpJsonValue.hpp"
+#include "../core/TrpJsonValue.hpp"
 
 #ifndef TRPJSONSTRING_HPP
 #define TRPJSONSTRING_HPP

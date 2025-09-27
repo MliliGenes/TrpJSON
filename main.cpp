@@ -1,7 +1,6 @@
 #include <iostream>
-#include <fstream>
 #include <string>
-#include "include/TrpJsonLexer.hpp"
+#include "include/core/TrpJsonLexer.hpp"
 
 // Helper function to convert token type to string for display
 std::string tokenTypeToString(TrpTokenType type) {
@@ -23,7 +22,6 @@ std::string tokenTypeToString(TrpTokenType type) {
     }
 }
 
-// Test the lexer with the given file
 void testLexer(const std::string& filename) {
     std::cout << "\nTesting lexer with file: " << filename << std::endl;
     std::cout << "----------------------------------------\n";
@@ -49,19 +47,20 @@ void testLexer(const std::string& filename) {
 }
 
 int main() {
-    std::cout << "TrpJSON Lexer Test\n";
+    std::cout << "TrpJSON Tests\n";
     std::cout << "=================\n";
     
     // Create test files
     const std::string validTestFile = "test_valid.json";
     const std::string errorTestFile = "test_errors.json";
     
-    std::cout << "\n===== TESTING VALID JSON =====";
+    std::cout << "\n===== TESTING LEXER WITH VALID JSON =====";
     testLexer(validTestFile);
     
-    std::cout << "\n===== TESTING ERROR DETECTION =====";
+    std::cout << "\n===== TESTING LEXER ERROR DETECTION =====";
     testLexer(errorTestFile);
     
-    std::cout << "\nLexer tests completed.\n";
+    
+    std::cout << "\nTests completed.\n";
     return 0;
 }

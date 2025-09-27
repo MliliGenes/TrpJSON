@@ -1,4 +1,4 @@
-#include "../include/TrpJsonArray.hpp"
+#include "../../include/values/TrpJsonArray.hpp"
 
 TrpJsonArray::TrpJsonArray( void ) {}
 

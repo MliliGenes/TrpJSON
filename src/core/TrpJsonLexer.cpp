@@ -1,7 +1,7 @@
-#include "../include/TrpJsonLexer.hpp"
+#include "../../include/core/TrpJsonLexer.hpp"
 
 TrpJsonLexer::TrpJsonLexer(std::string _file_name) 
-    : file_name(_file_name), current_line(""), line(0), col(0), has_next_line(false) {
+    : file_name(_file_name), has_next_line(false), current_line(""), line(0), col(0) {
     json_file.open(file_name.c_str(), std::ios::in);
     if (!json_file.is_open()) {
         std::cerr << "Error: Failed to open file: " << file_name << std::endl;

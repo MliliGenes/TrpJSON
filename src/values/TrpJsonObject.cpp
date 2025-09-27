@@ -1,4 +1,4 @@
-#include "../include/TrpJsonObject.hpp"
+#include "../../include/values/TrpJsonObject.hpp"
 
 TrpJsonObject::TrpJsonObject( void ) {}
 

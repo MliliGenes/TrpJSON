@@ -3,7 +3,7 @@
 TrpJsonArray::TrpJsonArray( void ) {};
 
 TrpJsonArray::~TrpJsonArray( void ) {
-    for (std::vector<ITrpJsonValue*>::iterator it = m_elements.begin();
+    for (JsonArrayVector::iterator it = m_elements.begin();
             it != m_elements.end(); it++) {
         delete *it;
         *it = NULL;

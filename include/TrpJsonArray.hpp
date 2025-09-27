@@ -6,10 +6,14 @@
 #ifndef TRPJSONARRAY_HPP  
 #define TRPJSONARRAY_HPP
 
+class TrpJsonArray;
+
+typedef std::vector<ITrpJsonValue*> JsonArrayVector;
+
 class TrpJsonArray : public ITrpJsonValue {
     private:
-        std::vector<ITrpJsonValue*> m_elements;
-    
+        JsonArrayVector m_elements;
+
     public:
         TrpJsonArray( void );
         ~TrpJsonArray( void );

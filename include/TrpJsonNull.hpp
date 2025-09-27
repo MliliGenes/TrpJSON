@@ -1,6 +1,6 @@
 #pragma once
 
-#include "TrpValue.hpp"
+#include "TrpJsonValue.hpp"
 
 #ifndef TRPJSONNULL_HPP
 #define TRPJSONNULL_HPP

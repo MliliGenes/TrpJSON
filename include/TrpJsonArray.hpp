@@ -1,8 +1,12 @@
 #pragma once
 
+#include "TrpJsonValue.hpp"
+
 #ifndef TRPARRAY_HPP
 #define TRPARRAY_HPP
 
-// TrpArray class declaration will go here
+class trpJsonArray : public ITrpJsonValue {
+
+};
 
 #endif // TRPARRAY_HPP

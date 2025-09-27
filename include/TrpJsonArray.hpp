@@ -19,7 +19,7 @@ class TrpJsonArray : public ITrpJsonValue {
         ~TrpJsonArray( void );
         TrpJsonType getType( void ) const;
         void add(ITrpJsonValue* value);
-        ITrpJsonValue* at(int index);
+        ITrpJsonValue* at(size_t index);
 }; 
 
 #endif // TRPARRAY_HPP

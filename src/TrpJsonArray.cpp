@@ -17,3 +17,7 @@ TrpJsonType TrpJsonArray::getType( void ) const {
 void TrpJsonArray::add(ITrpJsonValue *value) {
     m_elements.push_back(value);
 }
+
+ITrpJsonValue* TrpJsonArray::at(int index) {
+    return m_elements.at(index);
+}

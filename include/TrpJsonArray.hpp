@@ -3,12 +3,18 @@
 #include "TrpJsonValue.hpp"
 #include <vector>
 
-#ifndef TRPARRAY_HPP
-#define TRPARRAY_HPP
+#ifndef TRPJSONARRAY_HPP  
+#define TRPJSONARRAY_HPP
 
-class trpJsonArray : public ITrpJsonValue {
+class TrpJsonArray : public ITrpJsonValue {
     private:
-        vector<ITrpJsonValue*> m_value;
+        std::vector<ITrpJsonValue*> m_elements;
+    
+    public:
+        TrpJsonArray( void );
+        ~TrpJsonArray( void );
+        TrpJsonType getType( void ) const;
+        void add(ITrpJsonValue* value);
 }; 
 
 #endif // TRPARRAY_HPP

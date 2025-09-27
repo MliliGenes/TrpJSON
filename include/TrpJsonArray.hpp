@@ -2,6 +2,7 @@
 
 #include "TrpJsonValue.hpp"
 #include <vector>
+#include <cstddef>
 
 #ifndef TRPJSONARRAY_HPP  
 #define TRPJSONARRAY_HPP

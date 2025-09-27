@@ -1,6 +1,6 @@
 #include "../include/TrpJsonArray.hpp"
 
-TrpJsonArray::TrpJsonArray( void ) {};
+TrpJsonArray::TrpJsonArray( void ) {}
 
 TrpJsonArray::~TrpJsonArray( void ) {
     for (JsonArrayVector::iterator it = m_elements.begin();

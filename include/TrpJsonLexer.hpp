@@ -4,8 +4,8 @@
 #include <fstream>
 #include <vector>
 
-#ifndef TRPLEXER_HPP
-#define TRPLEXER_HPP
+#ifndef TRPJSONLEXER_HPP
+#define TRPJSONLEXER_HPP
 
 enum TrpTokenType {
     T_BRACE_OPEN,       // {
@@ -30,30 +30,40 @@ struct token {
     size_t col;         // 0-based column number
 };
 
+typedef std::string::iterator stringIterator;
 class TrpJsonLexer {
     private:
-        bool opened;
-        std::vector<std::string> lines;
         std::ifstream json_file;
         std::string file_name;
-        size_t line, col;
+        std::string current_line;    // Currently processed line
+        std::string next_line;      // Buffer for next line (for lookahead)
+        size_t line;                // Current line number
+        size_t col;                 // Current column number (for error reporting)
+        stringIterator current;  // Current position in the line
+        stringIterator line_end; // End of the current line
+        bool has_next_line;         // Indicates if next_line is valid
 
         void skipWhitespace();
         char peekChar() const;
         char getChar();
-        TrpToken readString();
-        TrpToken readNumber();
-        TrpToken readLiteral();
+        void advanceLexer();
+        void pushBackLexer();
+        bool loadNextLineIfNeeded();
+        token readString();
+        token readNumber();
+        token readLiteral();
+        token createErrorToken(const std::string& message);
+        bool isAtEndOfLine() const;
+        bool isAtEnd() const;
 
 
     public:
         TrpJsonLexer(std::string file_name);
-        ~TrpJsonLexer();
-        TrpToken getNextToken();
-        bool isOpen() const { return opened; }
+        ~TrpJsonLexer( void );
+        token getNextToken( void );
 };
 
-#endif // TRPLEXER_HPP
+#endif // TRPJSONLEXER_HPP
 
 
 // value  → object | array | string | number | true | false | null

@@ -1,0 +1,10 @@
+{
+  "string": "Hello, World!",
+  "number": 42.5,
+  "integer": 100,
+  "array": [1, 2, 3],
+  "object": { "key": "value" },
+  "boolean": true,
+  "other_bool": false,
+  "nothing": null
+}

@@ -1,0 +1,9 @@
+{
+  "unterminated_string": "Hello,
+  "leading_zero": 01.23,
+  "bad_escape": "\z",
+  "incomplete_number": 42.,
+  "invalid_literal": tru,
+  "unexpected_char": @,
+  "incomplete_exponent": 1e,
+}

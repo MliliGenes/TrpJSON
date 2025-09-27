@@ -10,7 +10,7 @@ class ITrpJsonValue;
 class ITrpJsonValue {
     public:
         ITrpJsonValue( void ) {}
-        virtual ~ITrpJsonValue( void ) = default;
+        virtual ~ITrpJsonValue( void ) = 0;
         virtual TrpJsonType getType( void ) const = 0;
 };
 

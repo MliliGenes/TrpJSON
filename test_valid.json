@@ -1,0 +1,15 @@
+{
+  "name": "Test JSON",
+  "version": 1.0,
+  "features": [
+    "lexer",
+    "parser",
+    "serializer"
+  ],
+  "enabled": true,
+  "config": {
+    "debug": false,
+    "timeout": 30,
+    "null_value": null
+  }
+}

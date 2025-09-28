@@ -16,7 +16,8 @@
 
 
 class TrpJsonParser {
-
+    private:
+        TrpJsonLexer lexer;
 };
 
 #endif // TRPJSONPARSER_HPP

@@ -46,12 +46,9 @@ void testLexer(const std::string& filename) {
     } while (t.type != T_END_OF_FILE && t.type != T_ERROR);
 }
 
-int main() {
-    std::cout << "TrpJSON Tests\n";
-    std::cout << "=================\n";
-    
+int main() {    
     // Create test files
-    const std::string validTestFile = "test_valid.json";
+    const std::string validTestFile = "cartoons_data.json";
     const std::string errorTestFile = "test_errors.json";
     
     std::cout << "\n===== TESTING LEXER WITH VALID JSON =====";

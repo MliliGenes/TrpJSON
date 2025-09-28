@@ -1,12 +1,9 @@
-GREEN=\033[1;32m
-YELLOW=\033[1;33m
-BLUE=\033[1;34m
-RED=\033[1;31m
-RESET=\033[0m
+# Get current date and time
+DATE := $(shell date +"%Y-%m-%d %H:%M:%S")
 
-CXX = g++
+CXX = c++
 
-CXXFLAGS = -Wall -Wextra -Wpedantic -std=c++98 -Iinclude
+CXXFLAGS = -Wall -Wextra -Werror -ggdb -std=c++98 -Iinclude
 
 SRCDIR = src
 TARGET = TrpJSON
@@ -34,48 +31,55 @@ OBJ = $(patsubst %.cpp,$(OBJDIR)/%.o,$(ROOT_SRC)) \
 all: $(TARGET)
 
 $(TARGET): $(OBJ)
-	@echo "$(BLUE)[Linking]$(RESET) $@"
+	@echo "[$(DATE)] [Linking] $@"
 	@$(CXX) $(CXXFLAGS) $(OBJ) -o $@
-	@echo "$(GREEN)[Built]$(RESET) $@ ✅"
+	@echo "[$(DATE)] [Built] $@ - 100% complete"
 
-# Root .cpp -> build/*.o
+# Calculate total number of source files for percentage
+TOTAL_FILES := $(words $(SRC))
+
+# Initialize counter for progress tracking
+CURRENT_FILE = 0
+
+define print_progress
+$(eval CURRENT_FILE=$(shell echo $$(($(CURRENT_FILE) + 1))))
+$(eval PERCENT=$(shell echo $$(($(CURRENT_FILE) * 100 / $(TOTAL_FILES)))))
+echo "[$(DATE)] [Compiling] $< → $@ - $(PERCENT)% complete"
+endef
+
 $(OBJDIR)/%.o: %.cpp
 	@mkdir -p $(OBJDIR)
-	@echo "$(YELLOW)[Compiling]$(RESET) $< → $@"
+	@$(call print_progress)
 	@$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# src/*.cpp -> build/src/*.o
 $(OBJDIR)/$(SRCDIR)/%.o: $(SRCDIR)/%.cpp
 	@mkdir -p $(OBJDIR)/$(SRCDIR)
-	@echo "$(YELLOW)[Compiling]$(RESET) $< → $@"
+	@$(call print_progress)
 	@$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# src/core/*.cpp -> build/src/core/*.o
 $(OBJDIR)/$(SRCDIR)/core/%.o: $(SRCDIR)/core/%.cpp
 	@mkdir -p $(OBJDIR)/$(SRCDIR)/core
-	@echo "$(YELLOW)[Compiling]$(RESET) $< → $@"
+	@$(call print_progress)
 	@$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# src/parser/*.cpp -> build/src/parser/*.o
 $(OBJDIR)/$(SRCDIR)/parser/%.o: $(SRCDIR)/parser/%.cpp
 	@mkdir -p $(OBJDIR)/$(SRCDIR)/parser
-	@echo "$(YELLOW)[Compiling]$(RESET) $< → $@"
+	@$(call print_progress)
 	@$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# src/values/*.cpp -> build/src/values/*.o
 $(OBJDIR)/$(SRCDIR)/values/%.o: $(SRCDIR)/values/%.cpp
 	@mkdir -p $(OBJDIR)/$(SRCDIR)/values
-	@echo "$(YELLOW)[Compiling]$(RESET) $< → $@"
+	@$(call print_progress)
 	@$(CXX) $(CXXFLAGS) -c $< -o $@
 
 re: fclean all
 
 clean:
-	@echo "$(RED)[Cleaning]$(RESET) removing object files"
+	@echo "[$(DATE)] [Cleaning] removing object files"
 	@rm -rf $(OBJDIR)
 
 fclean: clean
-	@echo "$(RED)[Cleaning]$(RESET) removing binary $(TARGET)"
+	@echo "[$(DATE)] [Cleaning] removing binary $(TARGET)"
 	@rm -f $(TARGET)
 
 .PHONY: all re clean fclean

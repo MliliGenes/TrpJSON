@@ -1,0 +1,1026 @@
+desc: --massif-out-file=massif.out
+cmd: ./TrpJSON
+time_unit: i
+#-----------
+snapshot=0
+#-----------
+time=0
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=1
+#-----------
+time=170640845
+mem_heap_B=89286
+mem_heap_extra_B=186
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=2
+#-----------
+time=312443878
+mem_heap_B=89016
+mem_heap_extra_B=168
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=3
+#-----------
+time=522875993
+mem_heap_B=92911
+mem_heap_extra_B=201
+mem_stacks_B=0
+heap_tree=detailed
+n5: 92911 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 73728 0x49380EF: pool (eh_alloc.cc:235)
+  n1: 73728 0x49380EF: __static_initialization_and_destruction_0 (eh_alloc.cc:373)
+   n1: 73728 0x49380EF: _GLOBAL__sub_I_eh_alloc.cc (eh_alloc.cc:456)
+    n1: 73728 0x40152A6: call_init (dl-init.c:74)
+     n1: 73728 0x40152A6: call_init (dl-init.c:26)
+      n1: 73728 0x401537C: _dl_init (dl-init.c:121)
+       n0: 73728 0x402DB9F: ??? (in /usr/lib/ld-linux-x86-64.so.2)
+ n1: 9495 0x4004BC0: std::__new_allocator<char>::allocate(unsigned long, void const*) (new_allocator.h:151)
+  n1: 9495 0x4004A9A: allocate (alloc_traits.h:142)
+   n1: 9495 0x4004A9A: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_allocate(std::allocator<char>&, unsigned long) (basic_string.h:142)
+    n4: 9495 0x400472F: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_create(unsigned long&, unsigned long) (basic_string.tcc:164)
+     n1: 4621 0x40049C7: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_assign(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (basic_string.tcc:319)
+      n1: 4621 0x4004666: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::assign(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (basic_string.h:1771)
+       n3: 4621 0x400426E: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator=(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (basic_string.h:906)
+        n1: 1865 0x4004F89: TrpJsonLexer::loadNextLineIfNeeded() (TrpJsonLexer.cpp:25)
+         n1: 1865 0x400505D: TrpJsonLexer::skipWhitespace() (TrpJsonLexer.cpp:41)
+          n1: 1865 0x400636F: TrpJsonLexer::getNextToken() (TrpJsonLexer.cpp:259)
+           n1: 1865 0x4003A39: testLexer(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (main.cpp:33)
+            n0: 1865 0x4003DD4: main (main.cpp:55)
+        n1: 1723 0x4003FC2: token::operator=(token const&) (TrpJsonLexer.hpp:27)
+         n1: 1723 0x4003A52: testLexer(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (main.cpp:33)
+          n0: 1723 0x4003DD4: main (main.cpp:55)
+        n1: 1033 0x40057F2: TrpJsonLexer::readString() (TrpJsonLexer.cpp:151)
+         n1: 1033 0x4006528: TrpJsonLexer::getNextToken() (TrpJsonLexer.cpp:302)
+          n1: 1033 0x4003A39: testLexer(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (main.cpp:33)
+           n0: 1033 0x4003DD4: main (main.cpp:55)
+     n2: 3786 0x4006A4D: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_mutate(unsigned long, unsigned long, char const*, unsigned long) (basic_string.tcc:363)
+      n1: 1921 0x4006945: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::push_back(char) (basic_string.h:1728)
+       n2: 1921 0x4006828: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator+=(char) (basic_string.h:1499)
+        n1: 1921 0x40057D2: TrpJsonLexer::readString() (TrpJsonLexer.cpp:147)
+         n1: 1921 0x4006528: TrpJsonLexer::getNextToken() (TrpJsonLexer.cpp:302)
+          n1: 1921 0x4003A39: testLexer(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (main.cpp:33)
+           n0: 1921 0x4003DD4: main (main.cpp:55)
+        n0: 0 in 1 place, below massif's threshold (1.00%)
+      n1: 1865 0x4957965: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_append(char const*, unsigned long) [clone .isra.0] (basic_string.tcc:455)
+       n1: 1865 0x4957EF7: append (basic_string.h:1570)
+        n1: 1865 0x4957EF7: std::basic_istream<char, std::char_traits<char> >& std::getline<char, std::char_traits<char>, std::allocator<char> >(std::basic_istream<char, std::char_traits<char> >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, char) (istream-string.cc:161)
+         n1: 1865 0x4004FA3: TrpJsonLexer::loadNextLineIfNeeded() (TrpJsonLexer.cpp:26)
+          n1: 1865 0x400505D: TrpJsonLexer::skipWhitespace() (TrpJsonLexer.cpp:41)
+           n1: 1865 0x400636F: TrpJsonLexer::getNextToken() (TrpJsonLexer.cpp:259)
+            n1: 1865 0x4003A39: testLexer(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (main.cpp:33)
+             n0: 1865 0x4003DD4: main (main.cpp:55)
+     n1: 1052 0x4004517: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<true>(char const*, unsigned long) (basic_string.tcc:291)
+      n2: 1052 0x400416A: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (basic_string.h:617)
+       n1: 1033 0x4006714: token::token(token const&) (TrpJsonLexer.hpp:27)
+        n1: 1033 0x4005808: TrpJsonLexer::readString() (TrpJsonLexer.cpp:152)
+         n1: 1033 0x4006528: TrpJsonLexer::getNextToken() (TrpJsonLexer.cpp:302)
+          n1: 1033 0x4003A39: testLexer(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (main.cpp:33)
+           n0: 1033 0x4003DD4: main (main.cpp:55)
+       n0: 19 in 2 places, all below massif's threshold (1.00%)
+     n0: 36 in 1 place, below massif's threshold (1.00%)
+ n1: 8192 0x49B049B: _M_allocate_internal_buffer (fstream.tcc:61)
+  n1: 8192 0x49B049B: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (fstream.tcc:54)
+   n1: 8192 0x49B4879: std::basic_filebuf<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (fstream.tcc:192)
+    n1: 8192 0x49B4A5C: std::basic_ifstream<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (fstream:706)
+     n1: 8192 0x4004CD6: TrpJsonLexer::TrpJsonLexer(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (TrpJsonLexer.cpp:5)
+      n1: 8192 0x4003A02: testLexer(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (main.cpp:29)
+       n0: 8192 0x4003DD4: main (main.cpp:55)
+ n1: 1024 0x4CD8F7C: _IO_file_doallocate (filedoalloc.c:91)
+  n1: 1024 0x4CE9225: _IO_doallocbuf (genops.c:373)
+   n1: 1024 0x4CE9225: _IO_doallocbuf (genops.c:368)
+    n1: 1024 0x4CE7098: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:779)
+     n1: 1024 0x4CE7CBA: _IO_new_file_xsputn (fileops.c:1305)
+      n1: 1024 0x4CE7CBA: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1258)
+       n1: 1024 0x4CDA7DA: fwrite (iofwrite.c:44)
+        n1: 1024 0x49DD09B: sputn (streambuf:460)
+         n1: 1024 0x49DD09B: __ostream_write<char, std::char_traits<char> > (ostream_insert.h:58)
+          n1: 1024 0x49DD09B: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (ostream_insert.h:109)
+           n1: 1024 0x49DD491: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (ostream.h:739)
+            n0: 1024 0x4003DC8: main (main.cpp:54)
+ n0: 472 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=4
+#-----------
+time=689671289
+mem_heap_B=88955
+mem_heap_extra_B=157
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=5
+#-----------
+time=954213820
+mem_heap_B=89106
+mem_heap_extra_B=174
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=6
+#-----------
+time=1103954052
+mem_heap_B=90366
+mem_heap_extra_B=194
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=7
+#-----------
+time=1355530324
+mem_heap_B=89016
+mem_heap_extra_B=168
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=8
+#-----------
+time=1496017762
+mem_heap_B=88955
+mem_heap_extra_B=157
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=9
+#-----------
+time=1678576103
+mem_heap_B=88955
+mem_heap_extra_B=157
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=10
+#-----------
+time=1937652650
+mem_heap_B=90366
+mem_heap_extra_B=194
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=11
+#-----------
+time=2068439035
+mem_heap_B=88955
+mem_heap_extra_B=157
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=12
+#-----------
+time=2251574297
+mem_heap_B=88955
+mem_heap_extra_B=157
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=13
+#-----------
+time=2408449248
+mem_heap_B=89106
+mem_heap_extra_B=174
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=14
+#-----------
+time=2617546638
+mem_heap_B=88955
+mem_heap_extra_B=157
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=15
+#-----------
+time=2853052394
+mem_heap_B=88955
+mem_heap_extra_B=157
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=16
+#-----------
+time=3009823416
+mem_heap_B=88955
+mem_heap_extra_B=157
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=17
+#-----------
+time=3140859713
+mem_heap_B=88955
+mem_heap_extra_B=157
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=18
+#-----------
+time=3309401540
+mem_heap_B=89106
+mem_heap_extra_B=174
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=19
+#-----------
+time=3478244413
+mem_heap_B=88955
+mem_heap_extra_B=157
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=20
+#-----------
+time=3646883377
+mem_heap_B=89016
+mem_heap_extra_B=168
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=21
+#-----------
+time=3773509107
+mem_heap_B=88955
+mem_heap_extra_B=157
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=22
+#-----------
+time=3942270952
+mem_heap_B=88955
+mem_heap_extra_B=157
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=23
+#-----------
+time=4195431313
+mem_heap_B=88955
+mem_heap_extra_B=157
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=24
+#-----------
+time=4448438526
+mem_heap_B=90366
+mem_heap_extra_B=194
+mem_stacks_B=0
+heap_tree=detailed
+n5: 90366 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 73728 0x49380EF: pool (eh_alloc.cc:235)
+  n1: 73728 0x49380EF: __static_initialization_and_destruction_0 (eh_alloc.cc:373)
+   n1: 73728 0x49380EF: _GLOBAL__sub_I_eh_alloc.cc (eh_alloc.cc:456)
+    n1: 73728 0x40152A6: call_init (dl-init.c:74)
+     n1: 73728 0x40152A6: call_init (dl-init.c:26)
+      n1: 73728 0x401537C: _dl_init (dl-init.c:121)
+       n0: 73728 0x402DB9F: ??? (in /usr/lib/ld-linux-x86-64.so.2)
+ n1: 8192 0x49B049B: _M_allocate_internal_buffer (fstream.tcc:61)
+  n1: 8192 0x49B049B: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (fstream.tcc:54)
+   n1: 8192 0x49B4879: std::basic_filebuf<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (fstream.tcc:192)
+    n1: 8192 0x49B4A5C: std::basic_ifstream<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (fstream:706)
+     n1: 8192 0x4004CD6: TrpJsonLexer::TrpJsonLexer(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (TrpJsonLexer.cpp:5)
+      n1: 8192 0x4003A02: testLexer(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (main.cpp:29)
+       n0: 8192 0x4003DD4: main (main.cpp:55)
+ n1: 6950 0x4004BC0: std::__new_allocator<char>::allocate(unsigned long, void const*) (new_allocator.h:151)
+  n1: 6950 0x4004A9A: allocate (alloc_traits.h:142)
+   n1: 6950 0x4004A9A: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_allocate(std::allocator<char>&, unsigned long) (basic_string.h:142)
+    n3: 6950 0x400472F: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_create(unsigned long&, unsigned long) (basic_string.tcc:164)
+     n1: 3588 0x40049C7: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_assign(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (basic_string.tcc:319)
+      n1: 3588 0x4004666: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::assign(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (basic_string.h:1771)
+       n3: 3588 0x400426E: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator=(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (basic_string.h:906)
+        n1: 1865 0x4004F89: TrpJsonLexer::loadNextLineIfNeeded() (TrpJsonLexer.cpp:25)
+         n1: 1865 0x400505D: TrpJsonLexer::skipWhitespace() (TrpJsonLexer.cpp:41)
+          n1: 1865 0x400636F: TrpJsonLexer::getNextToken() (TrpJsonLexer.cpp:259)
+           n1: 1865 0x4003A39: testLexer(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (main.cpp:33)
+            n0: 1865 0x4003DD4: main (main.cpp:55)
+        n1: 1723 0x4003FC2: token::operator=(token const&) (TrpJsonLexer.hpp:27)
+         n1: 1723 0x4003A52: testLexer(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (main.cpp:33)
+          n0: 1723 0x4003DD4: main (main.cpp:55)
+        n0: 0 in 1 place, below massif's threshold (1.00%)
+     n2: 3307 0x4006A4D: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_mutate(unsigned long, unsigned long, char const*, unsigned long) (basic_string.tcc:363)
+      n1: 1865 0x4957965: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_append(char const*, unsigned long) [clone .isra.0] (basic_string.tcc:455)
+       n1: 1865 0x4957EF7: append (basic_string.h:1570)
+        n1: 1865 0x4957EF7: std::basic_istream<char, std::char_traits<char> >& std::getline<char, std::char_traits<char>, std::allocator<char> >(std::basic_istream<char, std::char_traits<char> >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, char) (istream-string.cc:161)
+         n1: 1865 0x4004FA3: TrpJsonLexer::loadNextLineIfNeeded() (TrpJsonLexer.cpp:26)
+          n1: 1865 0x400505D: TrpJsonLexer::skipWhitespace() (TrpJsonLexer.cpp:41)
+           n1: 1865 0x400636F: TrpJsonLexer::getNextToken() (TrpJsonLexer.cpp:259)
+            n1: 1865 0x4003A39: testLexer(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (main.cpp:33)
+             n0: 1865 0x4003DD4: main (main.cpp:55)
+      n1: 1442 0x4006945: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::push_back(char) (basic_string.h:1728)
+       n2: 1442 0x4006828: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator+=(char) (basic_string.h:1499)
+        n1: 1442 0x40057D2: TrpJsonLexer::readString() (TrpJsonLexer.cpp:147)
+         n1: 1442 0x4006528: TrpJsonLexer::getNextToken() (TrpJsonLexer.cpp:302)
+          n1: 1442 0x4003A39: testLexer(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (main.cpp:33)
+           n0: 1442 0x4003DD4: main (main.cpp:55)
+        n0: 0 in 2 places, all below massif's threshold (1.00%)
+     n0: 55 in 2 places, all below massif's threshold (1.00%)
+ n1: 1024 0x4CD8F7C: _IO_file_doallocate (filedoalloc.c:91)
+  n1: 1024 0x4CE9225: _IO_doallocbuf (genops.c:373)
+   n1: 1024 0x4CE9225: _IO_doallocbuf (genops.c:368)
+    n1: 1024 0x4CE7098: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:779)
+     n1: 1024 0x4CE7CBA: _IO_new_file_xsputn (fileops.c:1305)
+      n1: 1024 0x4CE7CBA: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1258)
+       n1: 1024 0x4CDA7DA: fwrite (iofwrite.c:44)
+        n1: 1024 0x49DD09B: sputn (streambuf:460)
+         n1: 1024 0x49DD09B: __ostream_write<char, std::char_traits<char> > (ostream_insert.h:58)
+          n1: 1024 0x49DD09B: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (ostream_insert.h:109)
+           n1: 1024 0x49DD491: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (ostream.h:739)
+            n0: 1024 0x4003DC8: main (main.cpp:54)
+ n0: 472 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=25
+#-----------
+time=4701649476
+mem_heap_B=88955
+mem_heap_extra_B=157
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=26
+#-----------
+time=4870375106
+mem_heap_B=88955
+mem_heap_extra_B=157
+mem_stacks_B=0
+heap_tree=detailed
+n5: 88955 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 73728 0x49380EF: pool (eh_alloc.cc:235)
+  n1: 73728 0x49380EF: __static_initialization_and_destruction_0 (eh_alloc.cc:373)
+   n1: 73728 0x49380EF: _GLOBAL__sub_I_eh_alloc.cc (eh_alloc.cc:456)
+    n1: 73728 0x40152A6: call_init (dl-init.c:74)
+     n1: 73728 0x40152A6: call_init (dl-init.c:26)
+      n1: 73728 0x401537C: _dl_init (dl-init.c:121)
+       n0: 73728 0x402DB9F: ??? (in /usr/lib/ld-linux-x86-64.so.2)
+ n1: 8192 0x49B049B: _M_allocate_internal_buffer (fstream.tcc:61)
+  n1: 8192 0x49B049B: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (fstream.tcc:54)
+   n1: 8192 0x49B4879: std::basic_filebuf<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (fstream.tcc:192)
+    n1: 8192 0x49B4A5C: std::basic_ifstream<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (fstream:706)
+     n1: 8192 0x4004CD6: TrpJsonLexer::TrpJsonLexer(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (TrpJsonLexer.cpp:5)
+      n1: 8192 0x4003A02: testLexer(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (main.cpp:29)
+       n0: 8192 0x4003DD4: main (main.cpp:55)
+ n1: 5539 0x4004BC0: std::__new_allocator<char>::allocate(unsigned long, void const*) (new_allocator.h:151)
+  n1: 5539 0x4004A9A: allocate (alloc_traits.h:142)
+   n1: 5539 0x4004A9A: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_allocate(std::allocator<char>&, unsigned long) (basic_string.h:142)
+    n3: 5539 0x400472F: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_create(unsigned long&, unsigned long) (basic_string.tcc:164)
+     n1: 3588 0x40049C7: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_assign(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (basic_string.tcc:319)
+      n1: 3588 0x4004666: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::assign(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (basic_string.h:1771)
+       n3: 3588 0x400426E: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator=(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (basic_string.h:906)
+        n1: 1865 0x4004F89: TrpJsonLexer::loadNextLineIfNeeded() (TrpJsonLexer.cpp:25)
+         n1: 1865 0x400505D: TrpJsonLexer::skipWhitespace() (TrpJsonLexer.cpp:41)
+          n1: 1865 0x400636F: TrpJsonLexer::getNextToken() (TrpJsonLexer.cpp:259)
+           n1: 1865 0x4003A39: testLexer(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (main.cpp:33)
+            n0: 1865 0x4003DD4: main (main.cpp:55)
+        n1: 1723 0x4003FC2: token::operator=(token const&) (TrpJsonLexer.hpp:27)
+         n1: 1723 0x4003A52: testLexer(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (main.cpp:33)
+          n0: 1723 0x4003DD4: main (main.cpp:55)
+        n0: 0 in 1 place, below massif's threshold (1.00%)
+     n2: 1896 0x4006A4D: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_mutate(unsigned long, unsigned long, char const*, unsigned long) (basic_string.tcc:363)
+      n1: 1865 0x4957965: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_append(char const*, unsigned long) [clone .isra.0] (basic_string.tcc:455)
+       n1: 1865 0x4957EF7: append (basic_string.h:1570)
+        n1: 1865 0x4957EF7: std::basic_istream<char, std::char_traits<char> >& std::getline<char, std::char_traits<char>, std::allocator<char> >(std::basic_istream<char, std::char_traits<char> >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, char) (istream-string.cc:161)
+         n1: 1865 0x4004FA3: TrpJsonLexer::loadNextLineIfNeeded() (TrpJsonLexer.cpp:26)
+          n1: 1865 0x400505D: TrpJsonLexer::skipWhitespace() (TrpJsonLexer.cpp:41)
+           n1: 1865 0x400636F: TrpJsonLexer::getNextToken() (TrpJsonLexer.cpp:259)
+            n1: 1865 0x4003A39: testLexer(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (main.cpp:33)
+             n0: 1865 0x4003DD4: main (main.cpp:55)
+      n0: 31 in 1 place, below massif's threshold (1.00%)
+     n0: 55 in 2 places, all below massif's threshold (1.00%)
+ n1: 1024 0x4CD8F7C: _IO_file_doallocate (filedoalloc.c:91)
+  n1: 1024 0x4CE9225: _IO_doallocbuf (genops.c:373)
+   n1: 1024 0x4CE9225: _IO_doallocbuf (genops.c:368)
+    n1: 1024 0x4CE7098: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:779)
+     n1: 1024 0x4CE7CBA: _IO_new_file_xsputn (fileops.c:1305)
+      n1: 1024 0x4CE7CBA: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1258)
+       n1: 1024 0x4CDA7DA: fwrite (iofwrite.c:44)
+        n1: 1024 0x49DD09B: sputn (streambuf:460)
+         n1: 1024 0x49DD09B: __ostream_write<char, std::char_traits<char> > (ostream_insert.h:58)
+          n1: 1024 0x49DD09B: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (ostream_insert.h:109)
+           n1: 1024 0x49DD491: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (ostream.h:739)
+            n0: 1024 0x4003DC8: main (main.cpp:54)
+ n0: 472 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=27
+#-----------
+time=4996883640
+mem_heap_B=88955
+mem_heap_extra_B=157
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=28
+#-----------
+time=5165466672
+mem_heap_B=88955
+mem_heap_extra_B=157
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=29
+#-----------
+time=5320198945
+mem_heap_B=89374
+mem_heap_extra_B=194
+mem_stacks_B=0
+heap_tree=detailed
+n5: 89374 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 73728 0x49380EF: pool (eh_alloc.cc:235)
+  n1: 73728 0x49380EF: __static_initialization_and_destruction_0 (eh_alloc.cc:373)
+   n1: 73728 0x49380EF: _GLOBAL__sub_I_eh_alloc.cc (eh_alloc.cc:456)
+    n1: 73728 0x40152A6: call_init (dl-init.c:74)
+     n1: 73728 0x40152A6: call_init (dl-init.c:26)
+      n1: 73728 0x401537C: _dl_init (dl-init.c:121)
+       n0: 73728 0x402DB9F: ??? (in /usr/lib/ld-linux-x86-64.so.2)
+ n1: 8192 0x49B049B: _M_allocate_internal_buffer (fstream.tcc:61)
+  n1: 8192 0x49B049B: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (fstream.tcc:54)
+   n1: 8192 0x49B4879: std::basic_filebuf<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (fstream.tcc:192)
+    n1: 8192 0x49B4A5C: std::basic_ifstream<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (fstream:706)
+     n1: 8192 0x4004CD6: TrpJsonLexer::TrpJsonLexer(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (TrpJsonLexer.cpp:5)
+      n1: 8192 0x4003A02: testLexer(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (main.cpp:29)
+       n0: 8192 0x4003DD4: main (main.cpp:55)
+ n1: 5958 0x4004BC0: std::__new_allocator<char>::allocate(unsigned long, void const*) (new_allocator.h:151)
+  n1: 5958 0x4004A9A: allocate (alloc_traits.h:142)
+   n1: 5958 0x4004A9A: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_allocate(std::allocator<char>&, unsigned long) (basic_string.h:142)
+    n3: 5958 0x400472F: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_create(unsigned long&, unsigned long) (basic_string.tcc:164)
+     n1: 3797 0x40049C7: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_assign(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (basic_string.tcc:319)
+      n1: 3797 0x4004666: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::assign(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (basic_string.h:1771)
+       n3: 3797 0x400426E: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator=(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (basic_string.h:906)
+        n1: 1865 0x4004F89: TrpJsonLexer::loadNextLineIfNeeded() (TrpJsonLexer.cpp:25)
+         n1: 1865 0x400505D: TrpJsonLexer::skipWhitespace() (TrpJsonLexer.cpp:41)
+          n1: 1865 0x400636F: TrpJsonLexer::getNextToken() (TrpJsonLexer.cpp:259)
+           n1: 1865 0x4003A39: testLexer(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (main.cpp:33)
+            n0: 1865 0x4003DD4: main (main.cpp:55)
+        n1: 1723 0x4003FC2: token::operator=(token const&) (TrpJsonLexer.hpp:27)
+         n1: 1723 0x4003A52: testLexer(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (main.cpp:33)
+          n0: 1723 0x4003DD4: main (main.cpp:55)
+        n0: 209 in 1 place, below massif's threshold (1.00%)
+     n2: 2106 0x4006A4D: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_mutate(unsigned long, unsigned long, char const*, unsigned long) (basic_string.tcc:363)
+      n1: 1865 0x4957965: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_append(char const*, unsigned long) [clone .isra.0] (basic_string.tcc:455)
+       n1: 1865 0x4957EF7: append (basic_string.h:1570)
+        n1: 1865 0x4957EF7: std::basic_istream<char, std::char_traits<char> >& std::getline<char, std::char_traits<char>, std::allocator<char> >(std::basic_istream<char, std::char_traits<char> >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, char) (istream-string.cc:161)
+         n1: 1865 0x4004FA3: TrpJsonLexer::loadNextLineIfNeeded() (TrpJsonLexer.cpp:26)
+          n1: 1865 0x400505D: TrpJsonLexer::skipWhitespace() (TrpJsonLexer.cpp:41)
+           n1: 1865 0x400636F: TrpJsonLexer::getNextToken() (TrpJsonLexer.cpp:259)
+            n1: 1865 0x4003A39: testLexer(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (main.cpp:33)
+             n0: 1865 0x4003DD4: main (main.cpp:55)
+      n0: 241 in 1 place, below massif's threshold (1.00%)
+     n0: 55 in 2 places, all below massif's threshold (1.00%)
+ n1: 1024 0x4CD8F7C: _IO_file_doallocate (filedoalloc.c:91)
+  n1: 1024 0x4CE9225: _IO_doallocbuf (genops.c:373)
+   n1: 1024 0x4CE9225: _IO_doallocbuf (genops.c:368)
+    n1: 1024 0x4CE7098: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:779)
+     n1: 1024 0x4CE7CBA: _IO_new_file_xsputn (fileops.c:1305)
+      n1: 1024 0x4CE7CBA: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1258)
+       n1: 1024 0x4CDA7DA: fwrite (iofwrite.c:44)
+        n1: 1024 0x49DD09B: sputn (streambuf:460)
+         n1: 1024 0x49DD09B: __ostream_write<char, std::char_traits<char> > (ostream_insert.h:58)
+          n1: 1024 0x49DD09B: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (ostream_insert.h:109)
+           n1: 1024 0x49DD491: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (ostream.h:739)
+            n0: 1024 0x4003DC8: main (main.cpp:54)
+ n0: 472 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=30
+#-----------
+time=5460716531
+mem_heap_B=89106
+mem_heap_extra_B=174
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=31
+#-----------
+time=5601253461
+mem_heap_B=88955
+mem_heap_extra_B=157
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=32
+#-----------
+time=5741789563
+mem_heap_B=89106
+mem_heap_extra_B=174
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=33
+#-----------
+time=5882384381
+mem_heap_B=90366
+mem_heap_extra_B=194
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=34
+#-----------
+time=6093463726
+mem_heap_B=88955
+mem_heap_extra_B=157
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=35
+#-----------
+time=6234190705
+mem_heap_B=88955
+mem_heap_extra_B=157
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=36
+#-----------
+time=6445123912
+mem_heap_B=89106
+mem_heap_extra_B=174
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=37
+#-----------
+time=6585897759
+mem_heap_B=88955
+mem_heap_extra_B=157
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=38
+#-----------
+time=6726479402
+mem_heap_B=88955
+mem_heap_extra_B=157
+mem_stacks_B=0
+heap_tree=detailed
+n5: 88955 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 73728 0x49380EF: pool (eh_alloc.cc:235)
+  n1: 73728 0x49380EF: __static_initialization_and_destruction_0 (eh_alloc.cc:373)
+   n1: 73728 0x49380EF: _GLOBAL__sub_I_eh_alloc.cc (eh_alloc.cc:456)
+    n1: 73728 0x40152A6: call_init (dl-init.c:74)
+     n1: 73728 0x40152A6: call_init (dl-init.c:26)
+      n1: 73728 0x401537C: _dl_init (dl-init.c:121)
+       n0: 73728 0x402DB9F: ??? (in /usr/lib/ld-linux-x86-64.so.2)
+ n1: 8192 0x49B049B: _M_allocate_internal_buffer (fstream.tcc:61)
+  n1: 8192 0x49B049B: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (fstream.tcc:54)
+   n1: 8192 0x49B4879: std::basic_filebuf<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (fstream.tcc:192)
+    n1: 8192 0x49B4A5C: std::basic_ifstream<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (fstream:706)
+     n1: 8192 0x4004CD6: TrpJsonLexer::TrpJsonLexer(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (TrpJsonLexer.cpp:5)
+      n1: 8192 0x4003A02: testLexer(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (main.cpp:29)
+       n0: 8192 0x4003DD4: main (main.cpp:55)
+ n1: 5539 0x4004BC0: std::__new_allocator<char>::allocate(unsigned long, void const*) (new_allocator.h:151)
+  n1: 5539 0x4004A9A: allocate (alloc_traits.h:142)
+   n1: 5539 0x4004A9A: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_allocate(std::allocator<char>&, unsigned long) (basic_string.h:142)
+    n3: 5539 0x400472F: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_create(unsigned long&, unsigned long) (basic_string.tcc:164)
+     n1: 3588 0x40049C7: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_assign(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (basic_string.tcc:319)
+      n1: 3588 0x4004666: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::assign(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (basic_string.h:1771)
+       n3: 3588 0x400426E: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator=(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (basic_string.h:906)
+        n1: 1865 0x4004F89: TrpJsonLexer::loadNextLineIfNeeded() (TrpJsonLexer.cpp:25)
+         n1: 1865 0x400505D: TrpJsonLexer::skipWhitespace() (TrpJsonLexer.cpp:41)
+          n1: 1865 0x400636F: TrpJsonLexer::getNextToken() (TrpJsonLexer.cpp:259)
+           n1: 1865 0x4003A39: testLexer(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (main.cpp:33)
+            n0: 1865 0x4003DD4: main (main.cpp:55)
+        n1: 1723 0x4003FC2: token::operator=(token const&) (TrpJsonLexer.hpp:27)
+         n1: 1723 0x4003A52: testLexer(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (main.cpp:33)
+          n0: 1723 0x4003DD4: main (main.cpp:55)
+        n0: 0 in 1 place, below massif's threshold (1.00%)
+     n2: 1896 0x4006A4D: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_mutate(unsigned long, unsigned long, char const*, unsigned long) (basic_string.tcc:363)
+      n1: 1865 0x4957965: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_append(char const*, unsigned long) [clone .isra.0] (basic_string.tcc:455)
+       n1: 1865 0x4957EF7: append (basic_string.h:1570)
+        n1: 1865 0x4957EF7: std::basic_istream<char, std::char_traits<char> >& std::getline<char, std::char_traits<char>, std::allocator<char> >(std::basic_istream<char, std::char_traits<char> >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, char) (istream-string.cc:161)
+         n1: 1865 0x4004FA3: TrpJsonLexer::loadNextLineIfNeeded() (TrpJsonLexer.cpp:26)
+          n1: 1865 0x400505D: TrpJsonLexer::skipWhitespace() (TrpJsonLexer.cpp:41)
+           n1: 1865 0x400636F: TrpJsonLexer::getNextToken() (TrpJsonLexer.cpp:259)
+            n1: 1865 0x4003A39: testLexer(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (main.cpp:33)
+             n0: 1865 0x4003DD4: main (main.cpp:55)
+      n0: 31 in 1 place, below massif's threshold (1.00%)
+     n0: 55 in 2 places, all below massif's threshold (1.00%)
+ n1: 1024 0x4CD8F7C: _IO_file_doallocate (filedoalloc.c:91)
+  n1: 1024 0x4CE9225: _IO_doallocbuf (genops.c:373)
+   n1: 1024 0x4CE9225: _IO_doallocbuf (genops.c:368)
+    n1: 1024 0x4CE7098: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:779)
+     n1: 1024 0x4CE7CBA: _IO_new_file_xsputn (fileops.c:1305)
+      n1: 1024 0x4CE7CBA: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1258)
+       n1: 1024 0x4CDA7DA: fwrite (iofwrite.c:44)
+        n1: 1024 0x49DD09B: sputn (streambuf:460)
+         n1: 1024 0x49DD09B: __ostream_write<char, std::char_traits<char> > (ostream_insert.h:58)
+          n1: 1024 0x49DD09B: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (ostream_insert.h:109)
+           n1: 1024 0x49DD491: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (ostream.h:739)
+            n0: 1024 0x4003DC8: main (main.cpp:54)
+ n0: 472 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=39
+#-----------
+time=6937350100
+mem_heap_B=89286
+mem_heap_extra_B=186
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=40
+#-----------
+time=7148131396
+mem_heap_B=89118
+mem_heap_extra_B=178
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=41
+#-----------
+time=7288778081
+mem_heap_B=88955
+mem_heap_extra_B=157
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=42
+#-----------
+time=7429398332
+mem_heap_B=88955
+mem_heap_extra_B=157
+mem_stacks_B=0
+heap_tree=detailed
+n5: 88955 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 73728 0x49380EF: pool (eh_alloc.cc:235)
+  n1: 73728 0x49380EF: __static_initialization_and_destruction_0 (eh_alloc.cc:373)
+   n1: 73728 0x49380EF: _GLOBAL__sub_I_eh_alloc.cc (eh_alloc.cc:456)
+    n1: 73728 0x40152A6: call_init (dl-init.c:74)
+     n1: 73728 0x40152A6: call_init (dl-init.c:26)
+      n1: 73728 0x401537C: _dl_init (dl-init.c:121)
+       n0: 73728 0x402DB9F: ??? (in /usr/lib/ld-linux-x86-64.so.2)
+ n1: 8192 0x49B049B: _M_allocate_internal_buffer (fstream.tcc:61)
+  n1: 8192 0x49B049B: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (fstream.tcc:54)
+   n1: 8192 0x49B4879: std::basic_filebuf<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (fstream.tcc:192)
+    n1: 8192 0x49B4A5C: std::basic_ifstream<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (fstream:706)
+     n1: 8192 0x4004CD6: TrpJsonLexer::TrpJsonLexer(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (TrpJsonLexer.cpp:5)
+      n1: 8192 0x4003A02: testLexer(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (main.cpp:29)
+       n0: 8192 0x4003DD4: main (main.cpp:55)
+ n1: 5539 0x4004BC0: std::__new_allocator<char>::allocate(unsigned long, void const*) (new_allocator.h:151)
+  n1: 5539 0x4004A9A: allocate (alloc_traits.h:142)
+   n1: 5539 0x4004A9A: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_allocate(std::allocator<char>&, unsigned long) (basic_string.h:142)
+    n3: 5539 0x400472F: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_create(unsigned long&, unsigned long) (basic_string.tcc:164)
+     n1: 3588 0x40049C7: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_assign(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (basic_string.tcc:319)
+      n1: 3588 0x4004666: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::assign(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (basic_string.h:1771)
+       n3: 3588 0x400426E: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator=(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (basic_string.h:906)
+        n1: 1865 0x4004F89: TrpJsonLexer::loadNextLineIfNeeded() (TrpJsonLexer.cpp:25)
+         n1: 1865 0x400505D: TrpJsonLexer::skipWhitespace() (TrpJsonLexer.cpp:41)
+          n1: 1865 0x400636F: TrpJsonLexer::getNextToken() (TrpJsonLexer.cpp:259)
+           n1: 1865 0x4003A39: testLexer(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (main.cpp:33)
+            n0: 1865 0x4003DD4: main (main.cpp:55)
+        n1: 1723 0x4003FC2: token::operator=(token const&) (TrpJsonLexer.hpp:27)
+         n1: 1723 0x4003A52: testLexer(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (main.cpp:33)
+          n0: 1723 0x4003DD4: main (main.cpp:55)
+        n0: 0 in 1 place, below massif's threshold (1.00%)
+     n2: 1896 0x4006A4D: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_mutate(unsigned long, unsigned long, char const*, unsigned long) (basic_string.tcc:363)
+      n1: 1865 0x4957965: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_append(char const*, unsigned long) [clone .isra.0] (basic_string.tcc:455)
+       n1: 1865 0x4957EF7: append (basic_string.h:1570)
+        n1: 1865 0x4957EF7: std::basic_istream<char, std::char_traits<char> >& std::getline<char, std::char_traits<char>, std::allocator<char> >(std::basic_istream<char, std::char_traits<char> >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, char) (istream-string.cc:161)
+         n1: 1865 0x4004FA3: TrpJsonLexer::loadNextLineIfNeeded() (TrpJsonLexer.cpp:26)
+          n1: 1865 0x400505D: TrpJsonLexer::skipWhitespace() (TrpJsonLexer.cpp:41)
+           n1: 1865 0x400636F: TrpJsonLexer::getNextToken() (TrpJsonLexer.cpp:259)
+            n1: 1865 0x4003A39: testLexer(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (main.cpp:33)
+             n0: 1865 0x4003DD4: main (main.cpp:55)
+      n0: 31 in 1 place, below massif's threshold (1.00%)
+     n0: 55 in 2 places, all below massif's threshold (1.00%)
+ n1: 1024 0x4CD8F7C: _IO_file_doallocate (filedoalloc.c:91)
+  n1: 1024 0x4CE9225: _IO_doallocbuf (genops.c:373)
+   n1: 1024 0x4CE9225: _IO_doallocbuf (genops.c:368)
+    n1: 1024 0x4CE7098: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:779)
+     n1: 1024 0x4CE7CBA: _IO_new_file_xsputn (fileops.c:1305)
+      n1: 1024 0x4CE7CBA: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1258)
+       n1: 1024 0x4CDA7DA: fwrite (iofwrite.c:44)
+        n1: 1024 0x49DD09B: sputn (streambuf:460)
+         n1: 1024 0x49DD09B: __ostream_write<char, std::char_traits<char> > (ostream_insert.h:58)
+          n1: 1024 0x49DD09B: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (ostream_insert.h:109)
+           n1: 1024 0x49DD491: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (ostream.h:739)
+            n0: 1024 0x4003DC8: main (main.cpp:54)
+ n0: 472 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=43
+#-----------
+time=7569984328
+mem_heap_B=89646
+mem_heap_extra_B=194
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=44
+#-----------
+time=7851000968
+mem_heap_B=88955
+mem_heap_extra_B=157
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=45
+#-----------
+time=8040877476
+mem_heap_B=93927
+mem_heap_extra_B=209
+mem_stacks_B=0
+heap_tree=peak
+n5: 93927 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 73728 0x49380EF: pool (eh_alloc.cc:235)
+  n1: 73728 0x49380EF: __static_initialization_and_destruction_0 (eh_alloc.cc:373)
+   n1: 73728 0x49380EF: _GLOBAL__sub_I_eh_alloc.cc (eh_alloc.cc:456)
+    n1: 73728 0x40152A6: call_init (dl-init.c:74)
+     n1: 73728 0x40152A6: call_init (dl-init.c:26)
+      n1: 73728 0x401537C: _dl_init (dl-init.c:121)
+       n0: 73728 0x402DB9F: ??? (in /usr/lib/ld-linux-x86-64.so.2)
+ n1: 10511 0x4004BC0: std::__new_allocator<char>::allocate(unsigned long, void const*) (new_allocator.h:151)
+  n1: 10511 0x4004A9A: allocate (alloc_traits.h:142)
+   n1: 10511 0x4004A9A: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_allocate(std::allocator<char>&, unsigned long) (basic_string.h:142)
+    n4: 10511 0x400472F: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_create(unsigned long&, unsigned long) (basic_string.tcc:164)
+     n1: 5129 0x40049C7: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_assign(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (basic_string.tcc:319)
+      n1: 5129 0x4004666: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::assign(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (basic_string.h:1771)
+       n3: 5129 0x400426E: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator=(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (basic_string.h:906)
+        n1: 1865 0x4004F89: TrpJsonLexer::loadNextLineIfNeeded() (TrpJsonLexer.cpp:25)
+         n1: 1865 0x400505D: TrpJsonLexer::skipWhitespace() (TrpJsonLexer.cpp:41)
+          n1: 1865 0x400636F: TrpJsonLexer::getNextToken() (TrpJsonLexer.cpp:259)
+           n1: 1865 0x4003A39: testLexer(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (main.cpp:33)
+            n0: 1865 0x4003DD4: main (main.cpp:55)
+        n1: 1723 0x4003FC2: token::operator=(token const&) (TrpJsonLexer.hpp:27)
+         n1: 1723 0x4003A52: testLexer(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (main.cpp:33)
+          n0: 1723 0x4003DD4: main (main.cpp:55)
+        n1: 1541 0x40057F2: TrpJsonLexer::readString() (TrpJsonLexer.cpp:151)
+         n1: 1541 0x4006528: TrpJsonLexer::getNextToken() (TrpJsonLexer.cpp:302)
+          n1: 1541 0x4003A39: testLexer(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (main.cpp:33)
+           n0: 1541 0x4003DD4: main (main.cpp:55)
+     n2: 3786 0x4006A4D: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_mutate(unsigned long, unsigned long, char const*, unsigned long) (basic_string.tcc:363)
+      n1: 1921 0x4006945: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::push_back(char) (basic_string.h:1728)
+       n2: 1921 0x4006828: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator+=(char) (basic_string.h:1499)
+        n1: 1921 0x40057D2: TrpJsonLexer::readString() (TrpJsonLexer.cpp:147)
+         n1: 1921 0x4006528: TrpJsonLexer::getNextToken() (TrpJsonLexer.cpp:302)
+          n1: 1921 0x4003A39: testLexer(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (main.cpp:33)
+           n0: 1921 0x4003DD4: main (main.cpp:55)
+        n0: 0 in 2 places, all below massif's threshold (1.00%)
+      n1: 1865 0x4957965: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_append(char const*, unsigned long) [clone .isra.0] (basic_string.tcc:455)
+       n1: 1865 0x4957EF7: append (basic_string.h:1570)
+        n1: 1865 0x4957EF7: std::basic_istream<char, std::char_traits<char> >& std::getline<char, std::char_traits<char>, std::allocator<char> >(std::basic_istream<char, std::char_traits<char> >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, char) (istream-string.cc:161)
+         n1: 1865 0x4004FA3: TrpJsonLexer::loadNextLineIfNeeded() (TrpJsonLexer.cpp:26)
+          n1: 1865 0x400505D: TrpJsonLexer::skipWhitespace() (TrpJsonLexer.cpp:41)
+           n1: 1865 0x400636F: TrpJsonLexer::getNextToken() (TrpJsonLexer.cpp:259)
+            n1: 1865 0x4003A39: testLexer(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (main.cpp:33)
+             n0: 1865 0x4003DD4: main (main.cpp:55)
+     n1: 1560 0x4004517: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<true>(char const*, unsigned long) (basic_string.tcc:291)
+      n2: 1560 0x400416A: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (basic_string.h:617)
+       n1: 1541 0x4006714: token::token(token const&) (TrpJsonLexer.hpp:27)
+        n1: 1541 0x4005808: TrpJsonLexer::readString() (TrpJsonLexer.cpp:152)
+         n1: 1541 0x4006528: TrpJsonLexer::getNextToken() (TrpJsonLexer.cpp:302)
+          n1: 1541 0x4003A39: testLexer(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (main.cpp:33)
+           n0: 1541 0x4003DD4: main (main.cpp:55)
+       n0: 19 in 2 places, all below massif's threshold (1.00%)
+     n0: 36 in 1 place, below massif's threshold (1.00%)
+ n1: 8192 0x49B049B: _M_allocate_internal_buffer (fstream.tcc:61)
+  n1: 8192 0x49B049B: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (fstream.tcc:54)
+   n1: 8192 0x49B4879: std::basic_filebuf<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (fstream.tcc:192)
+    n1: 8192 0x49B4A5C: std::basic_ifstream<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (fstream:706)
+     n1: 8192 0x4004CD6: TrpJsonLexer::TrpJsonLexer(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (TrpJsonLexer.cpp:5)
+      n1: 8192 0x4003A02: testLexer(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (main.cpp:29)
+       n0: 8192 0x4003DD4: main (main.cpp:55)
+ n1: 1024 0x4CD8F7C: _IO_file_doallocate (filedoalloc.c:91)
+  n1: 1024 0x4CE9225: _IO_doallocbuf (genops.c:373)
+   n1: 1024 0x4CE9225: _IO_doallocbuf (genops.c:368)
+    n1: 1024 0x4CE7098: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:779)
+     n1: 1024 0x4CE7CBA: _IO_new_file_xsputn (fileops.c:1305)
+      n1: 1024 0x4CE7CBA: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1258)
+       n1: 1024 0x4CDA7DA: fwrite (iofwrite.c:44)
+        n1: 1024 0x49DD09B: sputn (streambuf:460)
+         n1: 1024 0x49DD09B: __ostream_write<char, std::char_traits<char> > (ostream_insert.h:58)
+          n1: 1024 0x49DD09B: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (ostream_insert.h:109)
+           n1: 1024 0x49DD491: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (ostream.h:739)
+            n0: 1024 0x4003DC8: main (main.cpp:54)
+ n0: 472 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=46
+#-----------
+time=8251652213
+mem_heap_B=88986
+mem_heap_extra_B=166
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=47
+#-----------
+time=8392235159
+mem_heap_B=88955
+mem_heap_extra_B=157
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=48
+#-----------
+time=8533084482
+mem_heap_B=88955
+mem_heap_extra_B=157
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=49
+#-----------
+time=8743988983
+mem_heap_B=89286
+mem_heap_extra_B=186
+mem_stacks_B=0
+heap_tree=detailed
+n5: 89286 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 73728 0x49380EF: pool (eh_alloc.cc:235)
+  n1: 73728 0x49380EF: __static_initialization_and_destruction_0 (eh_alloc.cc:373)
+   n1: 73728 0x49380EF: _GLOBAL__sub_I_eh_alloc.cc (eh_alloc.cc:456)
+    n1: 73728 0x40152A6: call_init (dl-init.c:74)
+     n1: 73728 0x40152A6: call_init (dl-init.c:26)
+      n1: 73728 0x401537C: _dl_init (dl-init.c:121)
+       n0: 73728 0x402DB9F: ??? (in /usr/lib/ld-linux-x86-64.so.2)
+ n1: 8192 0x49B049B: _M_allocate_internal_buffer (fstream.tcc:61)
+  n1: 8192 0x49B049B: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (fstream.tcc:54)
+   n1: 8192 0x49B4879: std::basic_filebuf<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (fstream.tcc:192)
+    n1: 8192 0x49B4A5C: std::basic_ifstream<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (fstream:706)
+     n1: 8192 0x4004CD6: TrpJsonLexer::TrpJsonLexer(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (TrpJsonLexer.cpp:5)
+      n1: 8192 0x4003A02: testLexer(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (main.cpp:29)
+       n0: 8192 0x4003DD4: main (main.cpp:55)
+ n1: 5870 0x4004BC0: std::__new_allocator<char>::allocate(unsigned long, void const*) (new_allocator.h:151)
+  n1: 5870 0x4004A9A: allocate (alloc_traits.h:142)
+   n1: 5870 0x4004A9A: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_allocate(std::allocator<char>&, unsigned long) (basic_string.h:142)
+    n3: 5870 0x400472F: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_create(unsigned long&, unsigned long) (basic_string.tcc:164)
+     n1: 3588 0x40049C7: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_assign(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (basic_string.tcc:319)
+      n1: 3588 0x4004666: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::assign(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (basic_string.h:1771)
+       n3: 3588 0x400426E: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator=(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (basic_string.h:906)
+        n1: 1865 0x4004F89: TrpJsonLexer::loadNextLineIfNeeded() (TrpJsonLexer.cpp:25)
+         n1: 1865 0x400505D: TrpJsonLexer::skipWhitespace() (TrpJsonLexer.cpp:41)
+          n1: 1865 0x400636F: TrpJsonLexer::getNextToken() (TrpJsonLexer.cpp:259)
+           n1: 1865 0x4003A39: testLexer(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (main.cpp:33)
+            n0: 1865 0x4003DD4: main (main.cpp:55)
+        n1: 1723 0x4003FC2: token::operator=(token const&) (TrpJsonLexer.hpp:27)
+         n1: 1723 0x4003A52: testLexer(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (main.cpp:33)
+          n0: 1723 0x4003DD4: main (main.cpp:55)
+        n0: 0 in 1 place, below massif's threshold (1.00%)
+     n2: 2227 0x4006A4D: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_mutate(unsigned long, unsigned long, char const*, unsigned long) (basic_string.tcc:363)
+      n1: 1865 0x4957965: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_append(char const*, unsigned long) [clone .isra.0] (basic_string.tcc:455)
+       n1: 1865 0x4957EF7: append (basic_string.h:1570)
+        n1: 1865 0x4957EF7: std::basic_istream<char, std::char_traits<char> >& std::getline<char, std::char_traits<char>, std::allocator<char> >(std::basic_istream<char, std::char_traits<char> >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, char) (istream-string.cc:161)
+         n1: 1865 0x4004FA3: TrpJsonLexer::loadNextLineIfNeeded() (TrpJsonLexer.cpp:26)
+          n1: 1865 0x400505D: TrpJsonLexer::skipWhitespace() (TrpJsonLexer.cpp:41)
+           n1: 1865 0x400636F: TrpJsonLexer::getNextToken() (TrpJsonLexer.cpp:259)
+            n1: 1865 0x4003A39: testLexer(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (main.cpp:33)
+             n0: 1865 0x4003DD4: main (main.cpp:55)
+      n0: 362 in 1 place, below massif's threshold (1.00%)
+     n0: 55 in 2 places, all below massif's threshold (1.00%)
+ n1: 1024 0x4CD8F7C: _IO_file_doallocate (filedoalloc.c:91)
+  n1: 1024 0x4CE9225: _IO_doallocbuf (genops.c:373)
+   n1: 1024 0x4CE9225: _IO_doallocbuf (genops.c:368)
+    n1: 1024 0x4CE7098: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:779)
+     n1: 1024 0x4CE7CBA: _IO_new_file_xsputn (fileops.c:1305)
+      n1: 1024 0x4CE7CBA: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1258)
+       n1: 1024 0x4CDA7DA: fwrite (iofwrite.c:44)
+        n1: 1024 0x49DD09B: sputn (streambuf:460)
+         n1: 1024 0x49DD09B: __ostream_write<char, std::char_traits<char> > (ostream_insert.h:58)
+          n1: 1024 0x49DD09B: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (ostream_insert.h:109)
+           n1: 1024 0x49DD491: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (ostream.h:739)
+            n0: 1024 0x4003DC8: main (main.cpp:54)
+ n0: 472 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=50
+#-----------
+time=8870530414
+mem_heap_B=88955
+mem_heap_extra_B=157
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=51
+#-----------
+time=8997174149
+mem_heap_B=88955
+mem_heap_extra_B=157
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=52
+#-----------
+time=9123757213
+mem_heap_B=88955
+mem_heap_extra_B=157
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=53
+#-----------
+time=9250283218
+mem_heap_B=88955
+mem_heap_extra_B=157
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=54
+#-----------
+time=9376923133
+mem_heap_B=88955
+mem_heap_extra_B=157
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=55
+#-----------
+time=9503441069
+mem_heap_B=89385
+mem_heap_extra_B=183
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=56
+#-----------
+time=9630105165
+mem_heap_B=88955
+mem_heap_extra_B=157
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=57
+#-----------
+time=9756630035
+mem_heap_B=88955
+mem_heap_extra_B=157
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=58
+#-----------
+time=9883276943
+mem_heap_B=88955
+mem_heap_extra_B=157
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=59
+#-----------
+time=10009789659
+mem_heap_B=89016
+mem_heap_extra_B=168
+mem_stacks_B=0
+heap_tree=detailed
+n5: 89016 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 73728 0x49380EF: pool (eh_alloc.cc:235)
+  n1: 73728 0x49380EF: __static_initialization_and_destruction_0 (eh_alloc.cc:373)
+   n1: 73728 0x49380EF: _GLOBAL__sub_I_eh_alloc.cc (eh_alloc.cc:456)
+    n1: 73728 0x40152A6: call_init (dl-init.c:74)
+     n1: 73728 0x40152A6: call_init (dl-init.c:26)
+      n1: 73728 0x401537C: _dl_init (dl-init.c:121)
+       n0: 73728 0x402DB9F: ??? (in /usr/lib/ld-linux-x86-64.so.2)
+ n1: 8192 0x49B049B: _M_allocate_internal_buffer (fstream.tcc:61)
+  n1: 8192 0x49B049B: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (fstream.tcc:54)
+   n1: 8192 0x49B4879: std::basic_filebuf<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (fstream.tcc:192)
+    n1: 8192 0x49B4A5C: std::basic_ifstream<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (fstream:706)
+     n1: 8192 0x4004CD6: TrpJsonLexer::TrpJsonLexer(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (TrpJsonLexer.cpp:5)
+      n1: 8192 0x4003A02: testLexer(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (main.cpp:29)
+       n0: 8192 0x4003DD4: main (main.cpp:55)
+ n1: 5600 0x4004BC0: std::__new_allocator<char>::allocate(unsigned long, void const*) (new_allocator.h:151)
+  n1: 5600 0x4004A9A: allocate (alloc_traits.h:142)
+   n1: 5600 0x4004A9A: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_allocate(std::allocator<char>&, unsigned long) (basic_string.h:142)
+    n3: 5600 0x400472F: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_create(unsigned long&, unsigned long) (basic_string.tcc:164)
+     n1: 3588 0x40049C7: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_assign(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (basic_string.tcc:319)
+      n1: 3588 0x4004666: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::assign(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (basic_string.h:1771)
+       n3: 3588 0x400426E: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator=(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (basic_string.h:906)
+        n1: 1865 0x4004F89: TrpJsonLexer::loadNextLineIfNeeded() (TrpJsonLexer.cpp:25)
+         n1: 1865 0x400505D: TrpJsonLexer::skipWhitespace() (TrpJsonLexer.cpp:41)
+          n1: 1865 0x400636F: TrpJsonLexer::getNextToken() (TrpJsonLexer.cpp:259)
+           n1: 1865 0x4003A39: testLexer(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (main.cpp:33)
+            n0: 1865 0x4003DD4: main (main.cpp:55)
+        n1: 1723 0x4003FC2: token::operator=(token const&) (TrpJsonLexer.hpp:27)
+         n1: 1723 0x4003A52: testLexer(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (main.cpp:33)
+          n0: 1723 0x4003DD4: main (main.cpp:55)
+        n0: 0 in 1 place, below massif's threshold (1.00%)
+     n2: 1957 0x4006A4D: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_mutate(unsigned long, unsigned long, char const*, unsigned long) (basic_string.tcc:363)
+      n1: 1865 0x4957965: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_append(char const*, unsigned long) [clone .isra.0] (basic_string.tcc:455)
+       n1: 1865 0x4957EF7: append (basic_string.h:1570)
+        n1: 1865 0x4957EF7: std::basic_istream<char, std::char_traits<char> >& std::getline<char, std::char_traits<char>, std::allocator<char> >(std::basic_istream<char, std::char_traits<char> >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, char) (istream-string.cc:161)
+         n1: 1865 0x4004FA3: TrpJsonLexer::loadNextLineIfNeeded() (TrpJsonLexer.cpp:26)
+          n1: 1865 0x400505D: TrpJsonLexer::skipWhitespace() (TrpJsonLexer.cpp:41)
+           n1: 1865 0x400636F: TrpJsonLexer::getNextToken() (TrpJsonLexer.cpp:259)
+            n1: 1865 0x4003A39: testLexer(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (main.cpp:33)
+             n0: 1865 0x4003DD4: main (main.cpp:55)
+      n0: 92 in 1 place, below massif's threshold (1.00%)
+     n0: 55 in 2 places, all below massif's threshold (1.00%)
+ n1: 1024 0x4CD8F7C: _IO_file_doallocate (filedoalloc.c:91)
+  n1: 1024 0x4CE9225: _IO_doallocbuf (genops.c:373)
+   n1: 1024 0x4CE9225: _IO_doallocbuf (genops.c:368)
+    n1: 1024 0x4CE7098: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:779)
+     n1: 1024 0x4CE7CBA: _IO_new_file_xsputn (fileops.c:1305)
+      n1: 1024 0x4CE7CBA: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1258)
+       n1: 1024 0x4CDA7DA: fwrite (iofwrite.c:44)
+        n1: 1024 0x49DD09B: sputn (streambuf:460)
+         n1: 1024 0x49DD09B: __ostream_write<char, std::char_traits<char> > (ostream_insert.h:58)
+          n1: 1024 0x49DD09B: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (ostream_insert.h:109)
+           n1: 1024 0x49DD491: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (ostream.h:739)
+            n0: 1024 0x4003DC8: main (main.cpp:54)
+ n0: 472 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=60
+#-----------
+time=10136300700
+mem_heap_B=89117
+mem_heap_extra_B=179
+mem_stacks_B=0
+heap_tree=empty

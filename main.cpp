@@ -48,7 +48,7 @@ void testLexer(const std::string& filename) {
 
 int main() {    
     // Create test files
-    const std::string validTestFile = "cartoons_data.json";
+    const std::string validTestFile = "test_valid.json";
     const std::string errorTestFile = "test_errors.json";
     
     std::cout << "\n===== TESTING LEXER WITH VALID JSON =====";

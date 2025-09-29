@@ -1,5 +1,6 @@
 #pragma once
 
+#include "../../include/core/AutoPointer.hpp"
 #include <string>
 #include <stdexcept>
 #include "../core/TrpJsonLexer.hpp"

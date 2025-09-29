@@ -9,7 +9,7 @@
 #include "../values/TrpJsonString.hpp"
 #include "../values/TrpJsonNumber.hpp"
 #include "../values/TrpJsonBool.hpp"
-#include "../values/TrpJsonNull.hpp"
+#include "../values/TrpJsonNull.hpp"    
 
 #ifndef TRPJSONPARSER_HPP
 #define TRPJSONPARSER_HPP
@@ -18,6 +18,7 @@
 class TrpJsonParser {
     private:
         TrpJsonLexer lexer;
+        
 };
 
 #endif // TRPJSONPARSER_HPP

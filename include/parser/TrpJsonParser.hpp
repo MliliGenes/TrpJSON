@@ -18,7 +18,13 @@
 class TrpJsonParser {
     private:
         TrpJsonLexer lexer;
-        
+        bool TrpLoop;
+
+    public:
+        TrpJsonParser( void );
+        TrpJsonParser( TrpJsonLexer& lexer );
+        ~TrpJsonParser( void );
+        void parse( void );
 };
 
 #endif // TRPJSONPARSER_HPP

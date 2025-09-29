@@ -12,3 +12,12 @@ TrpJsonParser::~TrpJsonParser( void ) {
     // idk
 }
 
+ITrpJsonValue* TrpJsonParser::parse( void ) {
+    if (!trp_loop) {
+        std::cerr << "Error: No file provided." << std::endl;
+        return NULL;
+    }
+
+
+    return NULL;
+}

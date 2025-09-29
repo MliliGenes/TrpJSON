@@ -18,13 +18,18 @@
 class TrpJsonParser {
     private:
         TrpJsonLexer lexer;
-        bool TrpLoop;
+        bool trp_loop;
+
+        ITrpJsonValue* parseArray( token& current_token );
+        ITrpJsonValue* parseObject( token& current_token );
+        ITrpJsonValue* parseString( token& current_token );
+        ITrpJsonValue* parseNumber( token& current_token );
+        ITrpJsonValue* parseLiteral( token& current_token );
 
     public:
-        TrpJsonParser( void );
-        TrpJsonParser( TrpJsonLexer& lexer );
+        TrpJsonParser( const std::string _file_nmae );
         ~TrpJsonParser( void );
-        void parse( void );
+        ITrpJsonValue* parse( void );
 };
 
 #endif // TRPJSONPARSER_HPP

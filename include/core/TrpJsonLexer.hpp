@@ -33,54 +33,54 @@ struct token
 };
 
 typedef std::string::iterator stringIterator;
-class TrpJsonLexer
-{
-private:
-    // File data
-    std::ifstream json_file;
-    std::string file_name;
+class TrpJsonLexer {
+    private:
+        // File data
+        std::ifstream json_file;
+        std::string file_name;
 
-    // Line data
-    bool has_next_line;
-    std::string current_line;
-    std::string next_line;
+        // Line data
+        bool has_next_line;
+        std::string current_line;
+        std::string next_line;
 
-    // Cords for Debugging and Errors
-    size_t line;
-    size_t col;
+        // Cords for Debugging and Errors
+        size_t line;
+        size_t col;
 
-    // Iterator cause it cool
-    stringIterator current;
-    stringIterator line_end;
+        // Iterator cause it cool
+        stringIterator current;
+        stringIterator line_end;
 
-    // Skipping whitespaces
-    void skipWhitespace();
+        // Skipping whitespaces
+        void skipWhitespace();
 
-    // Peeking utils
-    char peekChar() const;
-    char getChar();
+        // Peeking utils
+        char peekChar() const;
+        char getChar();
 
-    // Lexer controlers
-    void advanceLexer();
-    void pushBackLexer();
+        // Lexer controlers
+        void advanceLexer();
+        void pushBackLexer();
 
-    // Raw types tokens
-    token readString();
-    token readNumber();
-    token readLiteral();
-    token createErrorToken(const std::string &message);
+        // Raw types tokens
+        token readString();
+        token readNumber();
+        token readLiteral();
+        token createErrorToken(const std::string &message);
 
-    // controling lines boundries
-    bool loadNextLineIfNeeded();
-    bool isAtEndOfLine() const;
-    bool isAtEnd() const;
+        // controling lines boundries
+        bool loadNextLineIfNeeded();
+        bool isAtEndOfLine() const;
+        bool isAtEnd() const;
 
-public:
-    TrpJsonLexer(std::string file_name);
-    ~TrpJsonLexer(void);
+    public:
+        TrpJsonLexer(std::string file_name);
+        ~TrpJsonLexer(void);
 
-    // the holy get next token; minishell refrance lmfao
-    token getNextToken(void);
+        // the holy get next token; minishell refrance lmfao
+        token getNextToken(void);
+        bool isOpen( void );
 };
 
 #endif // TRPJSONLEXER_HPP

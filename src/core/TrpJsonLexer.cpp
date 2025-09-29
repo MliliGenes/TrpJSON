@@ -19,6 +19,10 @@ TrpJsonLexer::~TrpJsonLexer(void) {
     }
 }
 
+bool TrpJsonLexer::isOpen( void ) {
+    return json_file.is_open();
+}
+
 bool TrpJsonLexer::loadNextLineIfNeeded() {
     if (isAtEndOfLine()) {
         if (has_next_line) {

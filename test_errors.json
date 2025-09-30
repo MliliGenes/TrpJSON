@@ -1,6 +1,6 @@
 {
   "unterminated string: ":"Test",
-  "invalid number": 01.23,
+  "invalid number": 1.23,
   "bad escape": "\z",
   "control character": "",
   "wrong literal": truee,

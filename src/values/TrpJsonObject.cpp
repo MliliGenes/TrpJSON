@@ -31,3 +31,16 @@ ITrpJsonValue* TrpJsonObject::find(std::string key) {
     }
     return NULL;
 }
+
+// Iterator support for serialization
+JsonObjectMap::const_iterator TrpJsonObject::begin() const {
+    return m_members.begin();
+}
+
+JsonObjectMap::const_iterator TrpJsonObject::end() const {
+    return m_members.end();
+}
+
+size_t TrpJsonObject::size() const {
+    return m_members.size();
+}

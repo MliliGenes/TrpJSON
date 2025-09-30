@@ -22,6 +22,11 @@ class TrpJsonObject : public ITrpJsonValue {
         TrpJsonType getType( void ) const;
         void add(std::string key, ITrpJsonValue* value);
         ITrpJsonValue* find(std::string key);
+        
+        // Iterator support for serialization
+        JsonObjectMap::const_iterator begin() const;
+        JsonObjectMap::const_iterator end() const;
+        size_t size() const;
 };
 
 #endif // TRPOBJECT_HPP

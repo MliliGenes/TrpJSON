@@ -20,3 +20,7 @@ void TrpJsonArray::add(ITrpJsonValue *value) {
 ITrpJsonValue* TrpJsonArray::at(size_t index) {
     return m_elements.at(index);
 }
+
+size_t TrpJsonArray::size(void) const {
+    return m_elements.size();
+}

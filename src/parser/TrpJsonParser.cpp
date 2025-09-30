@@ -13,8 +13,43 @@ TrpJsonParser::TrpJsonParser( void ) : parsed(false) {
     lexer = NULL;
 }
 
+void TrpJsonParser::resetLexer( TrpJsonLexer* new_lexer ) {
+    if ( !new_lexer || !new_lexer->isOpen()  ) return;
+    if ( lexer ) delete lexer;
+    lexer = new_lexer;
+}
+
+ITrpJsonValue* TrpJsonParser::getAST( void ) const { return head; }
+bool TrpJsonParser::isParsed( void ) const { return parsed; }
+const token& TrpJsonParser::getLastError( void ) const { return last_err; }
+
+void TrpJsonParser::lastError( void ) const { 
+    if ( last_err.type == T_ERROR || last_err.type == T_END_OF_FILE ) {
+        std::cerr << lexer->getFileName() << ":"
+        << last_err.line << ":"
+        << last_err.col << ":"
+        << "Error: " << last_err.value << std::endl;
+    }
+}
+
+void TrpJsonParser::clearAST( void ) {
+    delete head;
+    head = NULL;
+}
+
+void TrpJsonParser::reset( void ) {
+    clearAST();
+    parsed = false;
+    last_err.type = T_ERROR;
+    last_err.value.clear();
+    last_err.col = 0;
+    last_err.line = 0;
+}
+
 TrpJsonParser::~TrpJsonParser( void ) {
-    // idk
+    clearAST();
+    delete lexer;
+    lexer = NULL;
 }
 
 ITrpJsonValue* TrpJsonParser::parseValue( token& current_token ) {
@@ -22,32 +57,36 @@ ITrpJsonValue* TrpJsonParser::parseValue( token& current_token ) {
     switch (current_token.type)
     {
         case T_BRACE_OPEN:
-            //return parseObject();
+            return parseObject( current_token );
 
         case T_BRACKET_OPEN:
-            //return parseArray();
+            return parseArray( current_token );
 
         case T_STRING:
-            //return parseString();
+            return parseString( current_token );
 
         case T_NUMBER:
-            //return parseNumbr();
+            return parseNumber( current_token );
 
         case T_TRUE: case T_FALSE: case T_NULL:
-            //return parseLiteral();
+            return parseLiteral( current_token );
 
         case T_END_OF_FILE:
-            
+            break;
         
         case T_ERROR:
-            last_err = current_token.value; 
-            std::cerr << "Error:\nline: " << current_token.line << " col: " << current_token.col << std::endl;
-            std::cerr << "\t" << last_err << std::endl;
+            last_err = current_token; 
+            std::cerr << lexer->getFileName() << ":"
+            << last_err.line << ":"
+            << last_err.col << ":"
+            << "Error: " << last_err.value << std::endl;
+            break;
 
         default:
-            std::cerr << "Error: Buy some memory storage brp!" << std::endl;
+            std::cerr << "Error: Buy some memory storage bro!" << std::endl;
+            break;
     }
-    
+
     return NULL;
 }
 
@@ -65,4 +104,97 @@ bool TrpJsonParser::parse( void ) {
         return true;
     }
     return false;
-}   
+}
+
+ITrpJsonValue* TrpJsonParser::parseArray( token& current_token ) {
+    if ( current_token.type != T_BRACKET_OPEN ) return NULL;
+
+    AutoPointer<TrpJsonArray> arr_ptr(new TrpJsonArray());
+
+    token t = lexer->getNextToken();
+    if ( t.type == T_BRACKET_CLOSE ) return arr_ptr.release();
+
+    while ( true ) {
+        ITrpJsonValue* tmp_value = parseValue(t);
+        if ( !tmp_value ) return NULL;
+
+        arr_ptr->add(tmp_value);
+
+        t = lexer->getNextToken();
+        if ( t.type == T_BRACKET_CLOSE ) {
+            break;
+        } else if ( t.type == T_COMMA ) {
+            t = lexer->getNextToken();
+            continue;
+        } else
+            return NULL;
+    }
+
+    return arr_ptr.release();
+}
+
+ITrpJsonValue* TrpJsonParser::parseObject( token& current_token ) {
+    if ( current_token.type != T_BRACE_OPEN ) return NULL;
+
+    AutoPointer<TrpJsonObject> obj_ptr( new TrpJsonObject() );
+
+    token t = lexer->getNextToken();
+    if ( t.type == T_BRACE_CLOSE ) return obj_ptr.release();
+
+    while ( true ) {
+        if ( t.type != T_STRING ) return NULL;
+
+        std::string key = t.value;
+
+        t = lexer->getNextToken();
+        if ( t.type != T_COLON ) return NULL;
+
+        t = lexer->getNextToken();
+        ITrpJsonValue* tmp_value = parseValue( t );
+        if ( !tmp_value ) return NULL;
+        obj_ptr->add(key, tmp_value);
+
+        t = lexer->getNextToken();
+        if ( t.type == T_BRACE_CLOSE ) {
+            break;
+        } else if ( t.type == T_COMMA ) {
+            t = lexer->getNextToken();
+            continue;
+        } else
+            return NULL;
+    }
+
+    return obj_ptr.release();
+}
+
+ITrpJsonValue* TrpJsonParser::parseString( token& current_token ) {
+    if ( current_token.type != T_STRING ) return NULL;
+
+    return new TrpJsonString(current_token.value);
+}
+
+ITrpJsonValue* TrpJsonParser::parseNumber( token& current_token ) {
+    if ( current_token.type != T_NUMBER ) return NULL;
+
+    double value = std::atof(current_token.value.c_str());
+    return new TrpJsonNumber(value);
+}
+
+ITrpJsonValue* TrpJsonParser::parseLiteral( token& current_token ) {
+    if ( !(current_token.type == T_NULL || current_token.type == T_TRUE || current_token.type == T_FALSE) )
+        return NULL;
+    
+    switch (current_token.type) {
+        case T_NULL:
+            return new TrpJsonNull();
+            
+        case T_TRUE:
+            return new TrpJsonBool(true);
+            
+        case T_FALSE:
+            return new TrpJsonBool(false);
+            
+        default:
+            return NULL;
+    }
+}

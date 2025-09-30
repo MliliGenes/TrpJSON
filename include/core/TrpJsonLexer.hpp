@@ -81,6 +81,7 @@ class TrpJsonLexer {
         // the holy get next token; minishell refrance lmfao
         token getNextToken(void);
         bool isOpen( void );
+        const std::string getFileName( void ) const;
 };
 
 #endif // TRPJSONLEXER_HPP

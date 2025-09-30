@@ -23,6 +23,10 @@ bool TrpJsonLexer::isOpen( void ) {
     return json_file.is_open();
 }
 
+const std::string TrpJsonLexer::getFileName( void ) const {
+    return file_name;
+}
+
 bool TrpJsonLexer::loadNextLineIfNeeded() {
     if (isAtEndOfLine()) {
         if (has_next_line) {

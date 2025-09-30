@@ -3,6 +3,7 @@
 #include "../../include/core/TrpAutoPointer.hpp"
 #include <string>
 #include <stdexcept>
+#include <cstdlib>
 #include "../core/TrpJsonLexer.hpp"
 #include "../core/TrpJsonValue.hpp"
 #include "../values/TrpJsonObject.hpp"
@@ -21,7 +22,7 @@ class TrpJsonParser {
         TrpJsonLexer* lexer;
         ITrpJsonValue* head;
         bool parsed;
-        std::string last_err;
+        token last_err;
 
 
         ITrpJsonValue* parseArray( token& current_token );
@@ -38,14 +39,20 @@ class TrpJsonParser {
         TrpJsonParser( const std::string _file_nmae );
         ~TrpJsonParser( void );
 
+        void resetLexer( TrpJsonLexer* new_lexer );
+
         bool parse( void );
         ITrpJsonValue* getAST( void ) const;
 
         bool isParsed( void ) const;                       
-        const std::string& getLastError( void ) const;
+        const token& getLastError( void ) const;
+        void lastError( void ) const;
         void clearAST( void );
 
+        void reset( void );
 
+        std::string astToString( void ) const;
+        void prettyPrint() const;
 
     private:
         TrpJsonParser( const TrpJsonParser& other );

@@ -38,8 +38,7 @@ ITrpJsonValue* TrpJsonParser::parse( void ) {
             //return parseLiteral();
 
         case T_END_OF_FILE:
-            std::cerr << "Error: Empty JSON file" << std::endl;
-            return NULL;
+            
         
         case T_ERROR:
             last_err = t.value; 
@@ -47,9 +46,9 @@ ITrpJsonValue* TrpJsonParser::parse( void ) {
             std::cerr << "\t" << last_err << std::endl;
 
         default:
-            break;
+            std::cerr << "Error: Buy some memory nigga!" << std::endl;
+            return NULL;
     }
-
 
     return NULL;
 }

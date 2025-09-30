@@ -1,26 +1,25 @@
 #include "../../include/parser/TrpJsonParser.hpp"
 
-TrpJsonParser::TrpJsonParser( const std::string _file_name ) : lexer(_file_name), parsed(false) {
-    if (!lexer.isOpen()) {
+TrpJsonParser::TrpJsonParser( const std::string _file_name ) : parsed(false) {
+    head = NULL;
+    lexer = new TrpJsonLexer(_file_name);
+    if (!lexer || (lexer && !lexer->isOpen())) {
         std::cerr << "Error: Failed to open file: " << _file_name << std::endl;
     }
+}
+
+TrpJsonParser::TrpJsonParser( void ) : parsed(false) {
+    head = NULL;
+    lexer = NULL;
 }
 
 TrpJsonParser::~TrpJsonParser( void ) {
     // idk
 }
 
-ITrpJsonValue* TrpJsonParser::parse( void ) {
-    if (!lexer.isOpen()) {
-        std::cerr << "Error: No file provided." << std::endl;
-        return NULL;
-    }
+ITrpJsonValue* TrpJsonParser::parseValue( token& current_token ) {
 
-    AutoPointer<ITrpJsonValue> auto_ptr;
-    // performe a check before parsing
-
-    token t = lexer.getNextToken();
-    switch (t.type)
+    switch (current_token.type)
     {
         case T_BRACE_OPEN:
             //return parseObject();
@@ -41,14 +40,29 @@ ITrpJsonValue* TrpJsonParser::parse( void ) {
             
         
         case T_ERROR:
-            last_err = t.value; 
-            std::cerr << "Error:\nline: " << t.line << " col: " << t.col << std::endl;
+            last_err = current_token.value; 
+            std::cerr << "Error:\nline: " << current_token.line << " col: " << current_token.col << std::endl;
             std::cerr << "\t" << last_err << std::endl;
 
         default:
-            std::cerr << "Error: Buy some memory nigga!" << std::endl;
-            return NULL;
+            std::cerr << "Error: Buy some memory storage brp!" << std::endl;
     }
-
+    
     return NULL;
 }
+
+bool TrpJsonParser::parse( void ) {
+    if (!lexer->isOpen()) {
+        std::cerr << "Error: No file provided." << std::endl;
+        return false;
+    }
+
+    token t = lexer->getNextToken();
+    head = parseValue(t);
+    
+    if ( head != NULL ) {
+        parsed = true;
+        return true;
+    }
+    return false;
+}   

@@ -18,7 +18,7 @@
 
 class TrpJsonParser {
     private:
-        TrpJsonLexer lexer;
+        TrpJsonLexer* lexer;
         ITrpJsonValue* head;
         bool parsed;
         std::string last_err;
@@ -30,12 +30,24 @@ class TrpJsonParser {
         ITrpJsonValue* parseNumber( token& current_token );
         ITrpJsonValue* parseLiteral( token& current_token );
 
+        ITrpJsonValue* parseValue( token& current_token );
+        
+
     public:
         TrpJsonParser( void );
-        TrpJsonParser( );
         TrpJsonParser( const std::string _file_nmae );
         ~TrpJsonParser( void );
-        ITrpJsonValue* parse( void );
+
+        bool parse( void );
+        ITrpJsonValue* getAST( void ) const;
+
+        bool isParsed( void ) const;                       
+        const std::string& getLastError( void ) const;    
+        void clearAST( void ); 
+
+    private:
+        TrpJsonParser( const TrpJsonParser& other );
+        TrpJsonParser& operator=( const TrpJsonParser& other );
 };
 
 #endif // TRPJSONPARSER_HPP

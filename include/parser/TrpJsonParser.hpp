@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../include/core/AutoPointer.hpp"
+#include "../../include/core/TrpAutoPointer.hpp"
 #include <string>
 #include <stdexcept>
 #include "../core/TrpJsonLexer.hpp"
@@ -42,8 +42,10 @@ class TrpJsonParser {
         ITrpJsonValue* getAST( void ) const;
 
         bool isParsed( void ) const;                       
-        const std::string& getLastError( void ) const;    
-        void clearAST( void ); 
+        const std::string& getLastError( void ) const;
+        void clearAST( void );
+
+
 
     private:
         TrpJsonParser( const TrpJsonParser& other );

@@ -103,6 +103,7 @@ clean:
 fclean: clean
 	@echo "[$(DATE)] [Cleaning] removing binary $(TARGET)"
 	@rm -f $(TARGET)
+	@rm -f $(STATIC_LIB)
 
 libclean:
 	@echo "[$(DATE)] [Cleaning] removing static library $(STATIC_LIB)"

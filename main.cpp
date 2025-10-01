@@ -24,9 +24,6 @@ std::string tokenTypeToString(TrpTokenType type) {
 }
 
 void testLexer(const std::string& filename) {
-    std::cout << "\nTesting lexer with file: " << filename << std::endl;
-    std::cout << "----------------------------------------\n";
-    
     TrpJsonLexer lexer(filename);
     token t;
     
@@ -58,9 +55,10 @@ void testParser(const std::string& filename) {
 
 int main(int ac, char **av) {
     if (ac != 2) return 1;
-    
+
     const std::string validTestFile = av[1];
     
+    testLexer(validTestFile);
     testParser(validTestFile);
     
     return 0;

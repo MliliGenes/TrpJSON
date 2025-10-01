@@ -97,7 +97,7 @@ clean:
 	@echo "[$(DATE)] [Cleaning] removing object files"
 	@rm -rf $(OBJDIR)
 
-fclean: clean
+fclean: clean clean-benchmark
 	@echo "[$(DATE)] [Cleaning] removing binary $(TARGET)"
 	@rm -f $(TARGET)
 	@rm -f $(STATIC_LIB)

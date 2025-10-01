@@ -37,7 +37,6 @@ public:
     }
 };
 
-// Convert number to string (C++98 compatible)
 std::string toString(double value, int precision = 2) {
     std::ostringstream oss;
     oss << std::fixed << std::setprecision(precision) << value;
@@ -67,7 +66,6 @@ public:
     void runBenchmark(const std::string& filename, const std::string& testName, int iterations) {
         std::cout << "\n=== Benchmarking: " << testName << " ===" << std::endl;
         
-        // Get file size
         std::ifstream file(filename.c_str(), std::ios::ate | std::ios::binary);
         if (!file.is_open()) {
             std::cerr << "Error: Cannot open file " << filename << std::endl;
@@ -213,7 +211,6 @@ int main() {
     
     JsonBenchmark benchmark;
     
-    // Test different JSON file sizes and types
     std::vector<std::pair<std::string, std::string> > testFiles;
     testFiles.push_back(std::make_pair("benchmark/data/simple_config.json", "Simple Config"));
     testFiles.push_back(std::make_pair("benchmark/data/api_response.json", "API Response"));

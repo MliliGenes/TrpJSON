@@ -24,7 +24,6 @@ class TrpJSONWebsite {
         console.log('🚀 TrpJSON Website Initializing...');
         
         // Initialize all components
-        this.setupScrollAnimations();
         this.setupInteractiveElements();
         this.setupCodeHighlighting();
         this.setupBenchmarkAnimations();
@@ -39,58 +38,7 @@ class TrpJSONWebsite {
         console.log('✅ TrpJSON Website Ready!');
     }
 
-    /**
-     * Scroll-based animations using Intersection Observer
-     */
-    setupScrollAnimations() {
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
 
-        // Create observer for different animation types
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    this.animateElement(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        // Observe all animated elements
-        const animatedElements = document.querySelectorAll(`
-            .feature-card, 
-            .benchmark-card, 
-            .use-case, 
-            .stat-item, 
-            .credits-content,
-            .demo-panel
-        `);
-
-        animatedElements.forEach((el, index) => {
-            // Add staggered animation delay
-            el.style.setProperty('--animation-delay', `${index * 0.1}s`);
-            observer.observe(el);
-        });
-
-        this.observers.push(observer);
-    }
-
-    /**
-     * Animate individual elements based on their type
-     */
-    animateElement(element) {
-        element.classList.add('animate-in');
-        
-        // Specific animations based on element type
-        if (element.classList.contains('feature-card')) {
-            this.animateFeatureCard(element);
-        } else if (element.classList.contains('benchmark-card')) {
-            this.animateBenchmarkCard(element);
-        } else if (element.classList.contains('stat-item')) {
-            this.animateStatItem(element);
-        }
-    }
 
     /**
      * Feature card hover effects and animations
@@ -682,21 +630,6 @@ window.trpJSONSite = trpJSONSite;
 // Add some CSS animations dynamically
 const dynamicStyles = document.createElement('style');
 dynamicStyles.textContent = `
-    .animate-in {
-        animation: slideInUp 0.8s ease-out both;
-        animation-delay: var(--animation-delay, 0s);
-    }
-    
-    @keyframes slideInUp {
-        from {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
     
     .copy-btn:hover {
         opacity: 1 !important;

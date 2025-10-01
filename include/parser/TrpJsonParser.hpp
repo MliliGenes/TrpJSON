@@ -50,6 +50,7 @@ class TrpJsonParser {
         void clearAST( void );
 
         void reset( void );
+        ITrpJsonValue* release( void );
 
         std::string astToString( void ) const;
         void prettyPrint() const;

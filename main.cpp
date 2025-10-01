@@ -58,7 +58,7 @@ void testParser(const std::string& filename) {
 
 int main(int ac, char **av) {
     if (ac != 2) return 1;
-    // Create test files
+    
     const std::string validTestFile = av[1];
     
     testParser(validTestFile);

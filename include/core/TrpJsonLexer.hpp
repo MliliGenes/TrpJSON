@@ -82,6 +82,8 @@ class TrpJsonLexer {
         token getNextToken(void);
         bool isOpen( void );
         const std::string getFileName( void ) const;
+
+        void reset( void );
 };
 
 #endif // TRPJSONLEXER_HPP

@@ -27,6 +27,21 @@ const std::string TrpJsonLexer::getFileName( void ) const {
     return file_name;
 }
 
+void TrpJsonLexer::reset( void ) {
+    if (json_file.is_open()) {
+        json_file.close();
+    }
+    line = col = 0;
+    json_file.open(file_name.c_str(), std::ios::in);
+    if (!json_file.is_open())
+        return;
+    current_line = "";
+    std::getline(json_file, current_line);
+    current = current_line.begin();
+    line_end = current_line.end();
+    has_next_line = static_cast<bool>(std::getline(json_file, next_line));
+}
+
 bool TrpJsonLexer::loadNextLineIfNeeded() {
     if (isAtEndOfLine()) {
         if (has_next_line) {
@@ -318,7 +333,6 @@ token TrpJsonLexer::getNextToken() {
             return readLiteral();
             
         default:
-            // Handle unexpected characters
             std::string error_msg = "Unexpected character: ";
             error_msg += c;
             return createErrorToken(error_msg);

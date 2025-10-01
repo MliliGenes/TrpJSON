@@ -46,6 +46,12 @@ void TrpJsonParser::reset( void ) {
     last_err.line = 0;
 }
 
+ITrpJsonValue* TrpJsonParser::release( void ) {
+    ITrpJsonValue* tmp = head;
+    head = NULL;
+    return tmp;
+}
+
 TrpJsonParser::~TrpJsonParser( void ) {
     clearAST();
     delete lexer;
@@ -58,22 +64,16 @@ ITrpJsonValue* TrpJsonParser::parseValue( token& current_token ) {
     {
         case T_BRACE_OPEN:
             return parseObject( current_token );
-
         case T_BRACKET_OPEN:
             return parseArray( current_token );
-
         case T_STRING:
             return parseString( current_token );
-
         case T_NUMBER:
             return parseNumber( current_token );
-
         case T_TRUE: case T_FALSE: case T_NULL:
             return parseLiteral( current_token );
-
         case T_END_OF_FILE:
             break;
-        
         case T_ERROR:
             last_err = current_token; 
             std::cerr << lexer->getFileName() << ":"
@@ -81,7 +81,6 @@ ITrpJsonValue* TrpJsonParser::parseValue( token& current_token ) {
             << last_err.col << ":"
             << "Error: " << last_err.value << std::endl;
             break;
-
         default:
             std::cerr << "Error: Buy some memory storage bro!" << std::endl;
             break;
@@ -187,13 +186,10 @@ ITrpJsonValue* TrpJsonParser::parseLiteral( token& current_token ) {
     switch (current_token.type) {
         case T_NULL:
             return new TrpJsonNull();
-            
         case T_TRUE:
             return new TrpJsonBool(true);
-            
         case T_FALSE:
             return new TrpJsonBool(false);
-            
         default:
             return NULL;
     }

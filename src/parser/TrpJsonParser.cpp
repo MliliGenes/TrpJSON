@@ -13,8 +13,13 @@ TrpJsonParser::TrpJsonParser( void ) : parsed(false) {
     lexer = NULL;
 }
 
+// we can create class with no lexer and later inject the lexer
+void TrpJsonParser::setLexer( TrpJsonLexer* _lexer ) {
+    resetLexer( _lexer );
+}
+
 void TrpJsonParser::resetLexer( TrpJsonLexer* new_lexer ) {
-    if ( !new_lexer || !new_lexer->isOpen()  ) return;
+    if ( !new_lexer || !new_lexer->isOpen() ) return;
     if ( lexer ) delete lexer;
     lexer = new_lexer;
 }

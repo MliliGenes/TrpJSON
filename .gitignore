@@ -7,7 +7,7 @@ obj/
 *.obj
 
 # Executable files
-TrpJSON
+trpjson
 *.exe
 
 # Debug files

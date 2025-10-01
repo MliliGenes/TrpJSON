@@ -11,11 +11,19 @@
 #include "../values/TrpJsonString.hpp"
 #include "../values/TrpJsonNumber.hpp"
 #include "../values/TrpJsonBool.hpp"
-#include "../values/TrpJsonNull.hpp"    
+#include "../values/TrpJsonNull.hpp"
 
 #ifndef TRPJSONPARSER_HPP
 #define TRPJSONPARSER_HPP
 
+#define RESET       "\033[0m"
+#define STRING_COLOR "\033[31m"      // Red for strings
+#define NUMBER_COLOR "\033[33m"      // Yellow for numbers
+#define BOOL_COLOR   "\033[32m"      // Green for true/false
+#define NULL_COLOR   "\033[35m"      // Magenta for null
+#define KEY_COLOR    "\033[94m"      // Bright blue for keys
+#define BRACE_COLOR  "\033[36m"      // Cyan for {} []
+#define PUNCT_COLOR  "\033[37m"      // White for punctuation
 
 class TrpJsonParser {
     private:
@@ -40,6 +48,7 @@ class TrpJsonParser {
         ~TrpJsonParser( void );
 
         void resetLexer( TrpJsonLexer* new_lexer );
+        void setLexer( TrpJsonLexer* _lexer);
 
         bool parse( void );
         ITrpJsonValue* getAST( void ) const;

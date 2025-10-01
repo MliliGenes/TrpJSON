@@ -1,443 +1,294 @@
-# TrpJSON Parser 🚀
+# TrpJSON
 
-[![C++98](https://img.shields.io/badge/C%2B%2B-98-blue.svg)](https://en.wikipedia.org/wiki/C%2B%2B98)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen.svg)](#building)
+A lightweight, C++98 compatible JSON parsing library with a clean object-oriented design.
 
-A high-performance, C++98-compatible JSON parser with colorized output, comprehensive error handling, and memory-safe design. Built with a recursive descent parser architecture for maximum efficiency and reliability.
+## Overview
 
-## ✨ Features
+TrpJSON is a JSON parsing library designed for C++98 compatibility, featuring a lexer-parser architecture with proper memory management through RAII smart pointers. The library provides a complete implementation of JSON parsing with support for all JSON data types.
 
-- **🎯 C++98 Compatible**: Works with legacy systems and older compilers
-- **🌈 Colorized Output**: ANSI color-coded JSON visualization
-- **🔍 Comprehensive Error Handling**: Detailed error messages with line/column information
-- **💾 Memory Safe**: Custom AutoPointer implementation prevents memory leaks
-- **⚡ High Performance**: Single-pass parsing with minimal memory allocation
-- **🎨 Pretty Printing**: Formatted JSON output with proper indentation
-- **📊 Complete Data Types**: Full JSON specification support (objects, arrays, strings, numbers, booleans, null)
+## Features
 
-## 🏗️ Architecture
+- **C++98 Compatible**: Works with legacy compilers and systems
+- **Memory Safe**: RAII-based memory management with AutoPointer template
+- **Complete JSON Support**: Objects, arrays, strings, numbers, booleans, and null values
+- **Error Reporting**: Detailed error messages with line and column information
+- **Lexer-Parser Architecture**: Clean separation of tokenization and parsing logic
+- **Static Library**: Can be compiled as a static library for easy integration
 
-The parser uses a clean polymorphic class hierarchy with recursive descent parsing:
+## Architecture
 
-```
-TrpJSON Parser
-├── Core Components
-│   ├── TrpJsonLexer     - Tokenization and lexical analysis
-│   └── TrpJsonParser    - Recursive descent parser
-├── Value Types
-│   ├── ITrpJsonValue    - Base interface for all JSON values
-│   ├── TrpJsonObject    - JSON objects (key-value pairs)
-│   ├── TrpJsonArray     - JSON arrays (ordered lists)
-│   ├── TrpJsonString    - JSON strings
-│   ├── TrpJsonNumber    - JSON numbers (integers and floats)
-│   ├── TrpJsonBool      - JSON booleans
-│   └── TrpJsonNull      - JSON null values
-└── Utilities
-    ├── AutoPointer      - Memory management
-    └── AstToString      - Colorized serialization
-```
+The library follows a modular design with three main components:
 
-## 🚀 Quick Start
+### Core Components
 
-### Building
+- **ITrpJsonValue**: Base interface for all JSON value types
+- **TrpJsonType**: Enumeration defining JSON value types
+- **TrpJsonLexer**: Tokenizes JSON input from files
+- **AutoPointer<T>**: RAII smart pointer template for C++98
 
-```bash
-# Clone the repository
-git clone https://github.com/MliliGenes/TrpJSON.git
-cd TrpJSON
+### Value Types
 
-# Build using make
-make
+- **TrpJsonObject**: JSON object implementation using std::map
+- **TrpJsonArray**: JSON array implementation using std::vector
+- **TrpJsonString**: JSON string value
+- **TrpJsonNumber**: JSON number value (double precision)
+- **TrpJsonBool**: JSON boolean value
+- **TrpJsonNull**: JSON null value
 
-# Or build manually
-g++ -Wall -Wextra -std=c++98 -Iinclude -o TrpJSON main.cpp src/**/*.cpp
+### Parser
+
+- **TrpJsonParser**: Main parser class that generates Abstract Syntax Tree (AST)
+## API Reference
+
+### TrpJsonParser
+
+The main parser class for processing JSON files.
+
+#### Constructor
+```cpp
+TrpJsonParser();                           // Default constructor
+TrpJsonParser(const std::string _file_nmae); // Constructor with file
 ```
 
-### Usage
-
-```bash
-# Parse a JSON file
-./TrpJSON input.json
-
-# The parser will output:
-# 1. Parsing results with error detection
-# 2. Colorized formatted JSON tree
+#### Core Methods
+```cpp
+bool parse();                              // Parse loaded JSON file
+ITrpJsonValue* getAST() const;             // Get parsed Abstract Syntax Tree
+ITrpJsonValue* release();                  // Release ownership of AST
+void reset();                              // Reset parser state
 ```
 
-## 📋 Example Usage
+#### State Management
+```cpp
+bool isParsed() const;                     // Check if parsing completed
+const token& getLastError() const;         // Get last parsing error
+void lastError() const;                    // Print last error details
+void clearAST();                           // Clear current AST
+```
 
-### Basic JSON Parsing
+#### Output Methods
+```cpp
+std::string astToString() const;           // Convert AST to string
+void prettyPrint() const;                  // Pretty-print parsed JSON
+```
+
+#### Lexer Management
+```cpp
+void setLexer(TrpJsonLexer* _lexer);       // Set lexer instance (calls resetLexer)
+void resetLexer(TrpJsonLexer* new_lexer);  // Replace lexer instance
+```
+
+### TrpJsonLexer
+
+Low-level tokenizer for JSON input.
+
+#### Constructor
+```cpp
+TrpJsonLexer(std::string file_name);       // Constructor with file
+```
+
+#### Methods
+```cpp
+token getNextToken();                      // Get next token from input
+bool isOpen();                             // Check if file is open
+const std::string getFileName() const;     // Get current filename
+void reset();                              // Reset lexer state
+```
+
+### Value Types API
+
+#### TrpJsonObject
+```cpp
+void add(std::string key, ITrpJsonValue* value);  // Add key-value pair
+ITrpJsonValue* find(std::string key);             // Find value by key
+JsonObjectMap::const_iterator begin() const;     // Iterator begin
+JsonObjectMap::const_iterator end() const;       // Iterator end
+size_t size() const;                              // Get object size
+```
+
+#### TrpJsonArray
+```cpp
+void add(ITrpJsonValue* value);            // Add element to array
+ITrpJsonValue* at(size_t index);           // Access element by index
+size_t size() const;                       // Get array size
+```
+
+#### TrpJsonString
+```cpp
+const std::string& getValue() const;       // Get string value
+```
+
+#### TrpJsonNumber
+```cpp
+const double& getValue() const;            // Get numeric value
+```
+
+#### TrpJsonBool
+```cpp
+const bool& getValue() const;              // Get boolean value
+```
+
+### AutoPointer<T>
+
+RAII smart pointer for automatic memory management.
+
+```cpp
+AutoPointer(T* ptr = NULL);                // Constructor
+bool isNULL() const;                       // Check if pointer is null
+T* get() const;                            // Get raw pointer
+T* release();                              // Release ownership
+void reset(T* ptr);                        // Reset with new pointer
+T& operator*() const;                      // Dereference operator
+T* operator->() const;                     // Arrow operator
+```
+
+## Usage Example
+
+### Basic Parsing
 
 ```cpp
 #include "include/parser/TrpJsonParser.hpp"
+#include "include/core/TrpAutoPointer.hpp"
 
 int main() {
-    // Create parser instance
-    TrpJsonParser parser("config.json");
+    // Create parser with JSON file
+    TrpJsonParser parser("data.json");
     
-    // Parse the JSON
-    AutoPointer<ITrpJsonValue> root = parser.parse();
-    
-    if (root.get() != NULL) {
-        // Successfully parsed
-        std::string formatted = astValueToString(root.get());
-        std::cout << formatted << std::endl;
+    // Parse the file
+    if (parser.parse()) {
+        // Get the AST
+        ITrpJsonValue* ast = parser.getAST();
+        
+        // Pretty print the result
+        parser.prettyPrint();
+        
+        // Convert to string
+        std::string jsonString = parser.astToString();
+        std::cout << jsonString << std::endl;
     } else {
-        // Parsing failed - errors already printed
-        return 1;
+        // Handle parsing error
+        parser.lastError();
     }
     
     return 0;
 }
 ```
 
-### Working with Parsed Data
+### Working with Parsed Values
 
 ```cpp
-// Access object members
-if (root->getType() == JSON_OBJECT) {
-    TrpJsonObject* obj = static_cast<TrpJsonObject*>(root.get());
-    ITrpJsonValue* name = obj->find("name");
+// Assuming we have a parsed object
+ITrpJsonValue* ast = parser.getAST();
+
+// Check type and cast
+if (ast->getType() == TRP_OBJECT) {
+    TrpJsonObject* obj = static_cast<TrpJsonObject*>(ast);
     
-    if (name && name->getType() == JSON_STRING) {
-        TrpJsonString* nameStr = static_cast<TrpJsonString*>(name);
+    // Find a value
+    ITrpJsonValue* nameValue = obj->find("name");
+    if (nameValue && nameValue->getType() == TRP_STRING) {
+        TrpJsonString* nameStr = static_cast<TrpJsonString*>(nameValue);
         std::cout << "Name: " << nameStr->getValue() << std::endl;
     }
 }
+```
 
-// Iterate through arrays
-if (root->getType() == JSON_ARRAY) {
-    TrpJsonArray* arr = static_cast<TrpJsonArray*>(root.get());
+### Using AutoPointer for Memory Management
+
+```cpp
+#include "include/core/TrpAutoPointer.hpp"
+
+void safeParsingExample() {
+    TrpJsonParser parser("data.json");
     
-    for (size_t i = 0; i < arr->size(); ++i) {
-        ITrpJsonValue* item = arr->at(i);
-        // Process each array item...
+    if (parser.parse()) {
+        // Use AutoPointer for automatic cleanup
+        AutoPointer<ITrpJsonValue> ast(parser.release());
+        
+        // Use ast safely - memory will be cleaned up automatically
+        if (!ast.isNULL()) {
+            // Process the AST
+            processJsonValue(ast.get());
+        }
+        // AutoPointer destructor automatically cleans up memory
     }
 }
 ```
 
-## 📊 Performance Benchmarks
+## Building
 
-| Test Case | File Size | Parse Time | Memory Usage |
-|-----------|-----------|------------|--------------|
-| Simple Config | 1KB | 0.12ms | 2.4KB |
-| Medium API Response | 50KB | 2.8ms | 124KB |
-| Large Dataset | 1MB | 48ms | 2.1MB |
-| Complex Nested | 100KB | 5.2ms | 285KB |
-
-**System**: Intel i7-10700K, 32GB RAM, GCC 9.4.0, Ubuntu 20.04
-
-### Performance Characteristics
-
-- **Memory Efficiency**: ~2x file size memory usage during parsing
-- **Speed**: Processes ~20MB/second on modern hardware
-- **Scalability**: Linear time complexity O(n) where n = input size
-- **Memory Safety**: Zero memory leaks with AutoPointer management
-
-## 🎯 Use Cases
-
-### 1. Configuration Files
-
-Perfect for parsing application configuration files with complex nested structures:
-
-```json
-{
-  "database": {
-    "host": "localhost",
-    "port": 5432,
-    "ssl": true,
-    "pools": [
-      {"name": "read", "size": 10},
-      {"name": "write", "size": 5}
-    ]
-  },
-  "logging": {
-    "level": "info",
-    "outputs": ["console", "file"]
-  }
-}
-```
-
-### 2. API Response Processing
-
-Handle REST API responses with proper error detection:
-
-```json
-{
-  "status": "success",
-  "data": {
-    "users": [
-      {"id": 1, "name": "Alice", "active": true},
-      {"id": 2, "name": "Bob", "active": false}
-    ],
-    "pagination": {
-      "page": 1,
-      "total": 150,
-      "hasNext": true
-    }
-  },
-  "timestamp": 1696118400
-}
-```
-
-### 3. Data Pipeline Processing
-
-Process large JSON datasets in data pipelines:
-
-```cpp
-// Stream processing example
-TrpJsonParser parser("large-dataset.json");
-AutoPointer<ITrpJsonValue> root = parser.parse();
-
-if (root->getType() == JSON_ARRAY) {
-    TrpJsonArray* records = static_cast<TrpJsonArray*>(root.get());
-    
-    // Process each record efficiently
-    for (size_t i = 0; i < records->size(); ++i) {
-        processRecord(records->at(i));
-    }
-}
-```
-
-## 🔧 API Reference
-
-### Core Classes
-
-#### `TrpJsonParser`
-
-Main parser class for JSON processing.
-
-**Constructor:**
-```cpp
-TrpJsonParser(const std::string& filename)
-```
-
-**Methods:**
-- `AutoPointer<ITrpJsonValue> parse()` - Parse the JSON file
-- `bool hasError() const` - Check if parsing encountered errors
-
-#### `ITrpJsonValue`
-
-Base interface for all JSON value types.
-
-**Methods:**
-- `JsonValueType getType() const` - Get the value type
-- `virtual ~ITrpJsonValue()` - Virtual destructor
-
-#### `TrpJsonObject`
-
-Represents JSON objects (key-value pairs).
-
-**Methods:**
-- `void add(const std::string& key, ITrpJsonValue* value)` - Add key-value pair
-- `ITrpJsonValue* find(const std::string& key)` - Find value by key
-- `JsonObjectMap::const_iterator begin() const` - Begin iterator
-- `JsonObjectMap::const_iterator end() const` - End iterator
-- `size_t size() const` - Get number of properties
-
-#### `TrpJsonArray`
-
-Represents JSON arrays (ordered lists).
-
-**Methods:**
-- `void add(ITrpJsonValue* value)` - Add element to array
-- `ITrpJsonValue* at(size_t index) const` - Access element by index
-- `size_t size() const` - Get array length
-
-### Value Types
-
-| Type | Class | Description |
-|------|-------|-------------|
-| `JSON_OBJECT` | `TrpJsonObject` | Key-value pairs |
-| `JSON_ARRAY` | `TrpJsonArray` | Ordered list |
-| `JSON_STRING` | `TrpJsonString` | UTF-8 string |
-| `JSON_NUMBER` | `TrpJsonNumber` | Integer or float |
-| `JSON_BOOL` | `TrpJsonBool` | Boolean value |
-| `JSON_NULL` | `TrpJsonNull` | Null value |
-
-## 🎨 Colorized Output
-
-The parser produces beautiful, syntax-highlighted JSON output:
-
-- **🟦 Blue**: Object/Array braces and brackets
-- **🟨 Yellow**: Object keys
-- **🟩 Green**: String values
-- **🟪 Purple**: Numbers
-- **🟧 Orange**: Booleans (true/false)
-- **⚪ Gray**: Null values
-- **⚫ White**: Punctuation (colons, commas)
-
-## ❗ Error Handling
-
-Comprehensive error detection with detailed reporting:
-
-```
-test_errors.json:3:19: Error: Invalid escape sequence: \z
-test_errors.json:7:1: Error: Unexpected token, expected ','
-test_errors.json:12:15: Error: Unterminated string literal
-```
-
-**Error Types Detected:**
-- Invalid escape sequences
-- Unterminated strings
-- Malformed numbers
-- Missing colons/commas
-- Unmatched braces/brackets
-- Invalid characters
-
-## 🔒 Memory Management
-
-Uses a custom `AutoPointer` template for automatic memory management:
-
-```cpp
-template<typename T>
-class AutoPointer {
-public:
-    explicit AutoPointer(T* ptr = NULL) : m_ptr(ptr) {}
-    ~AutoPointer() { delete m_ptr; }
-    
-    T* get() const { return m_ptr; }
-    T* release() { T* tmp = m_ptr; m_ptr = NULL; return tmp; }
-    
-private:
-    T* m_ptr;
-    // Copy prevention
-    AutoPointer(const AutoPointer&);
-    AutoPointer& operator=(const AutoPointer&);
-};
-```
-
-## 🛠️ Development
-
-### Project Structure
-
-```
-TrpJSON/
-├── include/           # Header files
-│   ├── core/         # Core components (lexer)
-│   ├── parser/       # Parser and serialization
-│   ├── values/       # JSON value types
-│   └── utils/        # Utilities (AutoPointer)
-├── src/              # Source files
-│   ├── core/         # Lexer implementation
-│   ├── parser/       # Parser implementation
-│   └── values/       # Value type implementations
-├── main.cpp          # Demo application
-├── Makefile          # Build configuration
-└── test_*.json       # Test files
-```
-
-### Building from Source
-
-Requirements:
-- C++98 compatible compiler (GCC 4.8+, Clang 3.3+, MSVC 2010+)
-- Make (optional, for build automation)
+### Compile as Library
 
 ```bash
-# Debug build
-make debug
-
-# Release build
-make release
-
-# Clean build files
-make clean
-
-# Rebuild everything
-make rebuild
-```
-
-### Running Tests
-
-```bash
-# Test with valid JSON
-./TrpJSON test_valid.json
-
-# Test error detection
-./TrpJSON test_errors.json
-
-# Test with custom file
-./TrpJSON your-file.json
-```
-
-## ⚡ Performance Benchmarks
-
-TrpJSON includes a comprehensive benchmarking suite with **legitimate performance metrics** using professional profiling tools like Valgrind.
-
-### Quick Benchmark
-
-```bash
-# Build and run basic benchmarks
-make benchmark
-./benchmark/benchmark
-```
-
-**Real Performance Results:**
-- **Simple Config** (625B): 0.081ms parse time, 7.34 MB/s throughput
-- **API Response** (1.5KB): 0.143ms parse time, 10.1 MB/s throughput  
-- **Large Dataset** (3.3KB): 0.259ms parse time, 12.05 MB/s throughput
-- **Complex Nested** (3.5KB): 0.253ms parse time, 13.05 MB/s throughput
-
-### Comprehensive Analysis
-
-For detailed profiling with memory analysis, cache performance, and CPU profiling:
-
-```bash
-# Run full benchmark suite with Valgrind
-make run-benchmarks
-
-# Results saved in benchmark/results/
-# - Memory usage analysis (Massif)
-# - Cache performance (Cachegrind) 
-# - CPU profiling (Callgrind)
-# - Memory leak detection (Memcheck)
-```
-
-### What Makes Our Benchmarks Legitimate
-
-✅ **Microsecond precision timing** using `gettimeofday()`  
-✅ **1000+ iterations** per test for statistical accuracy  
-✅ **Real memory profiling** with Valgrind Massif  
-✅ **Cache analysis** with hardware performance counters  
-✅ **Memory leak detection** ensuring zero leaks  
-✅ **Professional tools** used in production environments  
-
-See `benchmark/README.md` for detailed analysis and methodology.
-
-### Static Library Usage
-
-Build as static library for integration into other projects:
-
-```bash
-# Build static library
 make lib
-
-# Install system-wide
-sudo make install
-
-# Use in your projects
-g++ -std=c++98 -ltrpjson your_code.cpp
 ```
 
-## 🤝 Contributing
+This creates `libtrpjson.a` static library.
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+### Using the Library
 
-## 📄 License
+Include the library in your project:
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+```bash
+g++ -std=c++98 -Iinclude your_file.cpp -L. -ltrpjson
+```
 
-## 🙏 Acknowledgments
+### Manual Compilation
 
-- JSON specification: [RFC 7159](https://tools.ietf.org/html/rfc7159)
-- C++98 standard for compatibility guidelines
-- Recursive descent parsing techniques
+```bash
+g++ -std=c++98 -Wall -Wextra -Iinclude src/*.cpp your_main.cpp
+```
 
----
+## JSON Type Mapping
 
-**TrpJSON Parser** - Making JSON parsing simple, safe, and beautiful in C++98! 🚀
+| JSON Type | C++ Class      | Enum Value  |
+|-----------|----------------|-------------|
+| Object    | TrpJsonObject  | TRP_OBJECT  |
+| Array     | TrpJsonArray   | TRP_ARRAY   |
+| String    | TrpJsonString  | TRP_STRING  |
+| Number    | TrpJsonNumber  | TRP_NUMBER  |
+| Boolean   | TrpJsonBool    | TRP_BOOL    |
+| Null      | TrpJsonNull    | TRP_NULL    |
+
+## Token Types
+
+The lexer recognizes the following token types:
+
+- `T_BRACE_OPEN`, `T_BRACE_CLOSE`: `{` and `}`
+- `T_BRACKET_OPEN`, `T_BRACKET_CLOSE`: `[` and `]`
+- `T_COLON`, `T_COMMA`: `:` and `,`
+- `T_STRING`, `T_NUMBER`: JSON string and number literals
+- `T_TRUE`, `T_FALSE`, `T_NULL`: JSON literals
+- `T_END_OF_FILE`, `T_ERROR`: End of input and error states
+
+## Error Handling
+
+The library provides detailed error information:
+
+```cpp
+if (!parser.parse()) {
+    const token& error = parser.getLastError();
+    std::cout << "Parse error at line " << error.line 
+              << ", column " << error.col 
+              << ": " << error.value << std::endl;
+}
+```
+
+## Memory Management
+
+The library uses RAII principles:
+
+- All dynamically allocated objects are managed through the `AutoPointer<T>` class
+- The parser automatically cleans up the AST when destroyed
+- Use `parser.release()` to transfer ownership of the AST
+- Always use `AutoPointer<T>` when taking ownership of parser results
+
+## Requirements
+
+- C++98 compatible compiler
+- Standard C++ library (iostream, string, vector, map, fstream)
+- Make (for building)
+
+## License
+
+This project uses the MIT License. See LICENSE file for details.

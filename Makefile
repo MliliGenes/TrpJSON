@@ -15,7 +15,12 @@ CORE_SRC = $(wildcard $(SRCDIR)/core/*.cpp)
 PARSER_SRC = $(wildcard $(SRCDIR)/parser/*.cpp)
 VALUES_SRC = $(wildcard $(SRCDIR)/values/*.cpp)
 
-SRC = $(ROOT_SRC) $(SRCDIR_SRC) $(CORE_SRC) $(PARSER_SRC) $(VALUES_SRC)
+TRP_SRC = $(SRCDIR_SRC) $(CORE_SRC) $(PARSER_SRC) $(VALUES_SRC)
+SRC = $(ROOT_SRC) $(TRP_SRC)
+
+# Library sources (exclude main.cpp for static library)
+LIB_SRC = $(TRP_SRC)
+STATIC_LIB = libtrpjson.a
 
 OBJDIR = build
 
@@ -28,6 +33,12 @@ OBJ = $(patsubst %.cpp,$(OBJDIR)/%.o,$(ROOT_SRC)) \
     $(patsubst $(SRCDIR)/parser/%.cpp,$(OBJDIR)/$(SRCDIR)/parser/%.o,$(PARSER_SRC)) \
     $(patsubst $(SRCDIR)/values/%.cpp,$(OBJDIR)/$(SRCDIR)/values/%.o,$(VALUES_SRC))
 
+# Library object files (exclude main.o)
+LIB_OBJ = $(patsubst $(SRCDIR)/%.cpp,$(OBJDIR)/$(SRCDIR)/%.o,$(SRCDIR_SRC)) \
+    $(patsubst $(SRCDIR)/core/%.cpp,$(OBJDIR)/$(SRCDIR)/core/%.o,$(CORE_SRC)) \
+    $(patsubst $(SRCDIR)/parser/%.cpp,$(OBJDIR)/$(SRCDIR)/parser/%.o,$(PARSER_SRC)) \
+    $(patsubst $(SRCDIR)/values/%.cpp,$(OBJDIR)/$(SRCDIR)/values/%.o,$(VALUES_SRC))
+
 all: $(TARGET)
 
 $(TARGET): $(OBJ)
@@ -35,10 +46,21 @@ $(TARGET): $(OBJ)
 	@$(CXX) $(CXXFLAGS) $(OBJ) -o $@
 	@echo "[$(DATE)] [Built] $@ - 100% complete"
 
-# Calculate total number of source files for percentage
+lib: $(STATIC_LIB)
+
+$(STATIC_LIB): $(LIB_OBJ)
+	@echo "[$(DATE)] [Creating Static Library] $@"
+	@ar rcs $@ $(LIB_OBJ)
+	@echo "[$(DATE)] [Built] $@ - Static library ready for use!"
+	@echo ""
+	@echo "Library Usage Instructions:"
+	@echo "   Include: -I$(PWD)/include"
+	@echo "   Link:    -L$(PWD) -ltrpjson"
+	@echo "   Example: g++ -std=c++98 -I$(PWD)/include your_file.cpp -L$(PWD) -ltrpjson"
+	@echo ""
+
 TOTAL_FILES := $(words $(SRC))
 
-# Initialize counter for progress tracking
 CURRENT_FILE = 0
 
 define print_progress
@@ -82,4 +104,26 @@ fclean: clean
 	@echo "[$(DATE)] [Cleaning] removing binary $(TARGET)"
 	@rm -f $(TARGET)
 
-.PHONY: all re clean fclean
+libclean:
+	@echo "[$(DATE)] [Cleaning] removing static library $(STATIC_LIB)"
+	@rm -f $(STATIC_LIB)
+
+libfclean: clean libclean
+
+install: $(STATIC_LIB)
+	@echo "[$(DATE)] [Installing] TrpJSON library to system"
+	@sudo mkdir -p /usr/local/lib
+	@sudo mkdir -p /usr/local/include/trpjson
+	@sudo cp $(STATIC_LIB) /usr/local/lib/
+	@sudo cp -r include/* /usr/local/include/trpjson/
+	@echo "[$(DATE)] [Installed] TrpJSON library to /usr/local/"
+	@echo "   Use: g++ -std=c++98 -ltrpjson your_file.cpp"
+	@echo "   Include: #include <trpjson/parser/TrpJsonParser.hpp>"
+
+uninstall:
+	@echo "[$(DATE)] [Uninstalling] TrpJSON library from system"
+	@sudo rm -f /usr/local/lib/$(STATIC_LIB)
+	@sudo rm -rf /usr/local/include/trpjson
+	@echo "[$(DATE)] [Uninstalled] TrpJSON library removed"
+
+.PHONY: all lib re clean fclean libclean libfclean install uninstall

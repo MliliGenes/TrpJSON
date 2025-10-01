@@ -1,0 +1,50 @@
+{
+    "status": "success",
+    "timestamp": "2024-01-15T10:30:45.123Z",
+    "data": {
+        "users": [
+            {
+                "id": 1001,
+                "name": "Alice Johnson",
+                "email": "alice@example.com",
+                "active": true,
+                "roles": ["user", "moderator"],
+                "profile": {
+                    "bio": "Software engineer with passion for JSON parsing",
+                    "location": "San Francisco, CA",
+                    "joinDate": "2023-01-15",
+                    "preferences": {
+                        "theme": "dark",
+                        "notifications": true,
+                        "language": "en-US"
+                    }
+                }
+            },
+            {
+                "id": 1002,
+                "name": "Bob Smith", 
+                "email": "bob@example.com",
+                "active": false,
+                "roles": ["user"],
+                "profile": {
+                    "bio": null,
+                    "location": "New York, NY",
+                    "joinDate": "2023-02-20",
+                    "preferences": {
+                        "theme": "light",
+                        "notifications": false,
+                        "language": "en-US"
+                    }
+                }
+            }
+        ],
+        "meta": {
+            "total": 2,
+            "page": 1,
+            "perPage": 10,
+            "hasMore": false
+        }
+    },
+    "errors": null,
+    "responseTime": 0.045
+}

@@ -1,0 +1,23 @@
+{
+    "name": "trpjson-config",
+    "version": "1.0.0",
+    "description": "A fast JSON parser written in C++98",
+    "main": "main.cpp",
+    "keywords": ["json", "parser", "cpp", "cpp98"],
+    "author": "TrpJSON Team",
+    "license": "MIT",
+    "dependencies": {},
+    "scripts": {
+        "build": "make",
+        "test": "make test",
+        "benchmark": "make benchmark"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/example/trpjson"
+    },
+    "bugs": {
+        "url": "https://github.com/example/trpjson/issues"
+    },
+    "homepage": "https://github.com/example/trpjson#readme"
+}

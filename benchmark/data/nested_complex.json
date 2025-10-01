@@ -1,0 +1,96 @@
+{
+    "application": {
+        "name": "TrpJSON Performance Suite",
+        "metadata": {
+            "created": "2024-01-01T00:00:00Z",
+            "authors": ["Performance Team"],
+            "tags": ["benchmark", "json", "parser", "performance"]
+        },
+        "configuration": {
+            "parser": {
+                "type": "recursive_descent",
+                "features": {
+                    "strict_mode": true,
+                    "unicode_support": true,
+                    "number_precision": "double",
+                    "string_encoding": "utf8",
+                    "memory_management": {
+                        "pool_size": 1048576,
+                        "chunk_size": 4096,
+                        "garbage_collection": false
+                    }
+                },
+                "limits": {
+                    "max_depth": 1000,
+                    "max_string_length": 1048576,
+                    "max_number_size": 308,
+                    "max_array_elements": 1000000
+                }
+            },
+            "output": {
+                "format": "json",
+                "pretty_print": {
+                    "enabled": true,
+                    "indent": "  ",
+                    "newlines": true,
+                    "spacing": true
+                },
+                "color_coding": {
+                    "enabled": true,
+                    "scheme": "cyberpunk",
+                    "colors": {
+                        "string": "#22c55e",
+                        "number": "#ff0080", 
+                        "boolean": "#f59e0b",
+                        "null": "#6b7280",
+                        "key": "#00d4ff",
+                        "punctuation": "#b8bcc8"
+                    }
+                }
+            }
+        },
+        "test_data": {
+            "scenarios": [
+                {
+                    "name": "simple_values",
+                    "data": {
+                        "string_value": "Hello, World!",
+                        "integer_value": 42,
+                        "float_value": 3.14159,
+                        "boolean_true": true,
+                        "boolean_false": false,
+                        "null_value": null
+                    }
+                },
+                {
+                    "name": "arrays_and_objects",
+                    "data": {
+                        "empty_array": [],
+                        "simple_array": [1, 2, 3],
+                        "mixed_array": [true, "string", 123, null, {"nested": "object"}],
+                        "empty_object": {},
+                        "nested_object": {
+                            "level1": {
+                                "level2": {
+                                    "values": [1, 2, 3]
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "edge_cases",
+                    "data": {
+                        "empty_string": "",
+                        "unicode_string": "Hello 世界 🌍",
+                        "escaped_string": "Line 1\\nLine 2\\tTabbed",
+                        "large_number": 1.7976931348623157e+308,
+                        "small_number": 2.2250738585072014e-308,
+                        "negative_zero": -0.0,
+                        "scientific_notation": 1.23e-10
+                    }
+                }
+            ]
+        }
+    }
+}

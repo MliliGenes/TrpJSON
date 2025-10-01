@@ -28,10 +28,7 @@ OBJDIR = build
 # Root .cpp files go to build/*.o
 # src/*.cpp files go to build/src/*.o  
 OBJ = $(patsubst %.cpp,$(OBJDIR)/%.o,$(ROOT_SRC)) \
-    $(patsubst $(SRCDIR)/%.cpp,$(OBJDIR)/$(SRCDIR)/%.o,$(SRCDIR_SRC)) \
-    $(patsubst $(SRCDIR)/core/%.cpp,$(OBJDIR)/$(SRCDIR)/core/%.o,$(CORE_SRC)) \
-    $(patsubst $(SRCDIR)/parser/%.cpp,$(OBJDIR)/$(SRCDIR)/parser/%.o,$(PARSER_SRC)) \
-    $(patsubst $(SRCDIR)/values/%.cpp,$(OBJDIR)/$(SRCDIR)/values/%.o,$(VALUES_SRC))
+    $(LIB_OBJ)
 
 # Library object files (exclude main.o)
 LIB_OBJ = $(patsubst $(SRCDIR)/%.cpp,$(OBJDIR)/$(SRCDIR)/%.o,$(SRCDIR_SRC)) \
@@ -104,6 +101,7 @@ fclean: clean
 	@echo "[$(DATE)] [Cleaning] removing binary $(TARGET)"
 	@rm -f $(TARGET)
 	@rm -f $(STATIC_LIB)
+	@rm -f $(BENCHMARK_TARGET)
 
 libclean:
 	@echo "[$(DATE)] [Cleaning] removing static library $(STATIC_LIB)"
@@ -127,4 +125,35 @@ uninstall:
 	@sudo rm -rf /usr/local/include/trpjson
 	@echo "[$(DATE)] [Uninstalled] TrpJSON library removed"
 
-.PHONY: all lib re clean fclean libclean libfclean install uninstall
+BENCHMARK_DIR = benchmark
+BENCHMARK_SRC = $(BENCHMARK_DIR)/benchmark.cpp
+BENCHMARK_TARGET = $(BENCHMARK_DIR)/benchmark
+BENCHMARK_OBJ = $(OBJDIR)/$(BENCHMARK_DIR)/benchmark.o
+
+benchmark: $(BENCHMARK_TARGET)
+
+$(BENCHMARK_TARGET): $(BENCHMARK_OBJ) $(LIB_OBJ)
+	@echo "[$(DATE)] [Linking Benchmark] $@"
+	@$(CXX) $(CXXFLAGS) $(BENCHMARK_OBJ) $(LIB_OBJ) -o $@
+	@echo "[$(DATE)] [Built] Benchmark executable ready!"
+	@echo ""
+	@echo "Usage:"
+	@echo "   ./benchmark/benchmark          - Run basic benchmarks"
+	@echo "   ./benchmark/run_benchmarks.sh  - Run comprehensive analysis with valgrind"
+
+$(OBJDIR)/$(BENCHMARK_DIR)/%.o: $(BENCHMARK_DIR)/%.cpp
+	@mkdir -p $(OBJDIR)/$(BENCHMARK_DIR)
+	@echo "[$(DATE)] [Compiling Benchmark] $< → $@"
+	@$(CXX) $(CXXFLAGS) -c $< -o $@
+
+run-benchmarks: benchmark
+	@echo "[$(DATE)] [Running] Comprehensive benchmark suite..."
+	@cd $(BENCHMARK_DIR) && ./run_benchmarks.sh
+
+clean-benchmark:
+	@echo "[$(DATE)] [Cleaning] benchmark objects and results"
+	@rm -f $(BENCHMARK_TARGET)
+	@rm -f $(BENCHMARK_OBJ)
+	@rm -rf $(BENCHMARK_DIR)/results
+
+.PHONY: all lib benchmark run-benchmarks clean-benchmark re clean fclean libclean libfclean install uninstall

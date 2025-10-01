@@ -1,0 +1,84 @@
+{
+    "benchmark": {
+        "suite": "json-parser-performance",
+        "version": "2.1.0",
+        "environment": {
+            "os": "linux",
+            "cpu": "x86_64",
+            "memory": "16GB",
+            "compiler": "g++ 11.4.0"
+        },
+        "configuration": {
+            "iterations": 10000,
+            "warmup": 1000,
+            "precision": "microsecond",
+            "optimization": "-O2",
+            "standards": ["c++98", "c++11", "c++17", "c++20"]
+        },
+        "datasets": [
+            {
+                "name": "small_objects",
+                "description": "Collection of small JSON objects",
+                "count": 1000,
+                "items": [
+                    {"id": 1, "value": 42.5, "active": true, "tags": ["test", "small"]},
+                    {"id": 2, "value": 13.7, "active": false, "tags": ["benchmark", "data"]},
+                    {"id": 3, "value": 99.9, "active": true, "tags": ["performance", "json"]},
+                    {"id": 4, "value": 0.001, "active": true, "tags": ["precision", "float"]},
+                    {"id": 5, "value": -273.15, "active": false, "tags": ["temperature", "celsius"]}
+                ]
+            },
+            {
+                "name": "nested_structures",
+                "description": "Deeply nested JSON structures",
+                "maxDepth": 10,
+                "structure": {
+                    "level1": {
+                        "level2": {
+                            "level3": {
+                                "level4": {
+                                    "level5": {
+                                        "level6": {
+                                            "level7": {
+                                                "level8": {
+                                                    "level9": {
+                                                        "level10": {
+                                                            "data": "deeply nested value",
+                                                            "numbers": [1, 2, 3, 4, 5],
+                                                            "boolean": true,
+                                                            "null_value": null
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        ],
+        "results": {
+            "parse_times": {
+                "min": 0.001234,
+                "max": 0.987654,
+                "avg": 0.045678,
+                "median": 0.042345,
+                "std_dev": 0.012345
+            },
+            "memory_usage": {
+                "peak_mb": 45.7,
+                "average_mb": 32.1,
+                "allocations": 12456,
+                "deallocations": 12456
+            },
+            "throughput": {
+                "mb_per_second": 234.56,
+                "objects_per_second": 22000,
+                "efficiency_score": 0.95
+            }
+        }
+    }
+}

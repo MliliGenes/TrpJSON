@@ -48,8 +48,7 @@ void testParser(const std::string& filename) {
     TrpJsonParser parser(filename);
     
     if (parser.parse())
-        std::cout << "Successfully parsed JSON:\n";
-    parser.prettyPrint();
+        parser.prettyPrint();
 }
 
 int main(int ac, char **av) {
@@ -57,7 +56,8 @@ int main(int ac, char **av) {
 
     const std::string validTestFile = av[1];
     
-    testLexer(validTestFile);
+    // testLexer(validTestFile);
+    std::cout << std::endl;
     testParser(validTestFile);
     
     return 0;

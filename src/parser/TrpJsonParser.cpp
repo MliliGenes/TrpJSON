@@ -3,9 +3,6 @@
 TrpJsonParser::TrpJsonParser( const std::string _file_name ) : parsed(false) {
     head = NULL;
     lexer = new TrpJsonLexer(_file_name);
-    if (!lexer || (lexer && !lexer->isOpen())) {
-        std::cerr << "Error: Failed to open file: " << _file_name << std::endl;
-    }
 }
 
 TrpJsonParser::TrpJsonParser( void ) : parsed(false) {

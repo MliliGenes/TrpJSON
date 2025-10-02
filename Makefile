@@ -54,27 +54,27 @@ $(TARGET): $(OBJ)
 	@echo "[$(DATE)] [Built] $@ - 100% complete"
 
 $(OBJDIR)/%.o: %.cpp
-	@mkdir -p $(OBJDIR)
+	@mkdir -p $(dir $@)
 	@$(call print_progress)
 	@$(CXX) $(CXXFLAGS) -c $< -o $@
 
 $(OBJDIR)/$(SRCDIR)/%.o: $(SRCDIR)/%.cpp
-	@mkdir -p $(OBJDIR)/$(SRCDIR)
+	@mkdir -p $(dir $@)
 	@$(call print_progress)
 	@$(CXX) $(CXXFLAGS) -c $< -o $@
 
 $(OBJDIR)/$(SRCDIR)/core/%.o: $(SRCDIR)/core/%.cpp
-	@mkdir -p $(OBJDIR)/$(SRCDIR)/core
+	@mkdir -p $(dir $@)
 	@$(call print_progress)
 	@$(CXX) $(CXXFLAGS) -c $< -o $@
 
 $(OBJDIR)/$(SRCDIR)/parser/%.o: $(SRCDIR)/parser/%.cpp
-	@mkdir -p $(OBJDIR)/$(SRCDIR)/parser
+	@mkdir -p $(dir $@)
 	@$(call print_progress)
 	@$(CXX) $(CXXFLAGS) -c $< -o $@
 
 $(OBJDIR)/$(SRCDIR)/values/%.o: $(SRCDIR)/values/%.cpp
-	@mkdir -p $(OBJDIR)/$(SRCDIR)/values
+	@mkdir -p $(dir $@)
 	@$(call print_progress)
 	@$(CXX) $(CXXFLAGS) -c $< -o $@
 
@@ -159,7 +159,7 @@ $(BENCHMARK_TARGET): $(BENCHMARK_OBJ) $(STATIC_LIB)
 	@echo "   ./benchmark/run_benchmarks.sh  - Run comprehensive analysis with valgrind"
 
 $(OBJDIR)/$(BENCHMARK_DIR)/%.o: $(BENCHMARK_DIR)/%.cpp
-	@mkdir -p $(OBJDIR)/$(BENCHMARK_DIR)
+	@mkdir -p $(dir $@)
 	@echo "[$(DATE)] [Compiling Benchmark] $< → $@"
 	@$(CXX) $(CXXFLAGS) -c $< -o $@
 

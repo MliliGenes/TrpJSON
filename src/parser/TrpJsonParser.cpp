@@ -25,13 +25,13 @@ ITrpJsonValue* TrpJsonParser::getAST( void ) const { return head; }
 bool TrpJsonParser::isParsed( void ) const { return parsed; }
 const token& TrpJsonParser::getLastError( void ) const { return last_err; }
 
-void TrpJsonParser::lastError( void ) const { 
-    if ( last_err.type == T_ERROR || last_err.type == T_END_OF_FILE ) {
-        std::cerr << lexer->getFileName() << ":"
-        << last_err.line << ":"
-        << last_err.col << ":"
-        << "Error: " << last_err.value << std::endl;
-    }
+void TrpJsonParser::lastError( token t ) {
+    if ( t.type != T_ERROR ) t.value = "Expected token";
+    std::cerr << lexer->getFileName() << ":"
+    << t.line << ":"
+    << t.col << " "
+    << "Error: " << t.value << std::endl;
+    last_err = t;
 }
 
 void TrpJsonParser::clearAST( void ) {
@@ -77,14 +77,9 @@ ITrpJsonValue* TrpJsonParser::parseValue( token& current_token ) {
         case T_END_OF_FILE:
             break;
         case T_ERROR:
-            last_err = current_token; 
-            std::cerr << lexer->getFileName() << ":"
-            << last_err.line << ":"
-            << last_err.col << ":"
-            << "Error: " << last_err.value << std::endl;
+            lastError( current_token );
             break;
         default:
-            std::cerr << "Error: Buy some memory storage bro!" << std::endl;
             break;
     }
 
@@ -92,7 +87,7 @@ ITrpJsonValue* TrpJsonParser::parseValue( token& current_token ) {
 }
 
 bool TrpJsonParser::parse( void ) {
-    if (!lexer->isOpen()) {
+    if ( !lexer ) {
         std::cerr << "Error: No file provided." << std::endl;
         return false;
     }
@@ -143,16 +138,24 @@ ITrpJsonValue* TrpJsonParser::parseObject( token& current_token ) {
     if ( t.type == T_BRACE_CLOSE ) return obj_ptr.release();
 
     while ( true ) {
-        if ( t.type != T_STRING ) return NULL;
+        if ( t.type != T_STRING ) {
+            lastError( t );
+            return NULL;
+        }
 
         std::string key = t.value;
 
         t = lexer->getNextToken();
-        if ( t.type != T_COLON ) return NULL;
+        if ( t.type != T_COLON ) {
+            lastError( t );
+            return NULL;
+        };
 
         t = lexer->getNextToken();
         ITrpJsonValue* tmp_value = parseValue( t );
-        if ( !tmp_value ) return NULL;
+        if ( !tmp_value ) {
+            return NULL;
+        }
         obj_ptr->add(key, tmp_value);
 
         t = lexer->getNextToken();
@@ -161,8 +164,10 @@ ITrpJsonValue* TrpJsonParser::parseObject( token& current_token ) {
         } else if ( t.type == T_COMMA ) {
             t = lexer->getNextToken();
             continue;
-        } else
+        } else {
+            lastError( t );
             return NULL;
+        }
     }
 
     return obj_ptr.release();

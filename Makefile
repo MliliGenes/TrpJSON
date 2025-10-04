@@ -108,7 +108,7 @@ $(STATIC_LIB): $(LIB_OBJ)
 	@ar rcs $@ $(LIB_OBJ)
 	@echo "[$(DATE)] [Built] $@ - Static library ready for use!"
 
-lib-re: lib-fclean lib
+lib-re: lib-clean lib
 
 lib-clean:
 	@echo "[$(DATE)] [Cleaning] removing static library"

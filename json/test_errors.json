@@ -1,7 +1,7 @@
 {
-  "unterminated string: ":"Test",
+  awdaw"unterminated string: ":"Test",
   "invalid number": 1.23,
-  "bad escape": "\z",
+  "bad escape": "\t", dawdawd
   "control character": "",
   "wrong literal": truee,
   "unclosed array": [

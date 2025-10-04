@@ -27,6 +27,7 @@ const std::string TrpJsonLexer::getFileName( void ) const {
     return file_name;
 }
 
+
 void TrpJsonLexer::reset( void ) {
     if (json_file.is_open()) {
         json_file.close();

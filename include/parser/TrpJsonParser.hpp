@@ -55,7 +55,7 @@ class TrpJsonParser {
 
         bool isParsed( void ) const;                       
         const token& getLastError( void ) const;
-        void lastError( void ) const;
+        void lastError( token t );
         void clearAST( void );
 
         void reset( void );

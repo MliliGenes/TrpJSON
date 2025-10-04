@@ -122,8 +122,10 @@ ITrpJsonValue* TrpJsonParser::parseArray( token& current_token ) {
         } else if ( t.type == T_COMMA ) {
             t = lexer->getNextToken();
             continue;
-        } else
+        } else {
+            lastError( t );
             return NULL;
+        }
     }
 
     return arr_ptr.release();

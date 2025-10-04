@@ -1,8 +1,6 @@
 {
-  awdaw"unterminated string: ":"Test",
+  "unterminated string: ":"Test", 
   "invalid number": 1.23,
-  "bad escape": "\t", dawdawd
-  "control character": "",
-  "wrong literal": truee,
-  "unclosed array": [
+  "bad escape": "\t", 
+  "unclosed array": dawd
 }

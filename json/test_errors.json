@@ -1,6 +1,7 @@
-{
+[{
   "unterminated string: ":"Test", 
   "invalid number": 1.23,
   "bad escape": "\t", 
-  "unclosed array": dawd
+  "unclosed array": daw
 }
+]

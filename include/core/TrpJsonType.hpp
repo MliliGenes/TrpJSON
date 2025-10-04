@@ -9,7 +9,8 @@ enum TrpType {
     TRP_NUMBER,
     TRP_STRING,
     TRP_ARRAY,
-    TRP_OBJECT
+    TRP_OBJECT,
+    TRP_ERROR
 };
 
 typedef enum TrpType TrpJsonType;

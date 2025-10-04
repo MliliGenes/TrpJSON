@@ -77,9 +77,8 @@ ITrpJsonValue* TrpJsonParser::parseValue( token& current_token ) {
         case T_END_OF_FILE:
             break;
         case T_ERROR:
-            lastError( current_token );
-            break;
         default:
+            lastError( current_token );
             break;
     }
 

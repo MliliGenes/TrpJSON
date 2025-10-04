@@ -366,14 +366,10 @@ class TrpJsonParser {
         ITrpJsonValue* parseLiteral(token& current_token);
         ITrpJsonValue* parseValue(token& current_token);
 
-        // Disable copy constructor and assignment
-        TrpJsonParser(const TrpJsonParser& other);
-        TrpJsonParser& operator=(const TrpJsonParser& other);
-
     public:
         // Constructors
         TrpJsonParser(void);
-        TrpJsonParser(const std::string _file_name);
+        TrpJsonParser(const std::string _file_nmae);
         
         // Destructor
         ~TrpJsonParser(void);
@@ -390,13 +386,17 @@ class TrpJsonParser {
         // State management
         bool isParsed(void) const;
         const token& getLastError(void) const;
-        void lastError(void) const;
+        void lastError(token t);
         void clearAST(void);
         void reset(void);
 
         // Output operations
         std::string astToString(void) const;
         void prettyPrint() const;
+
+    private:
+        TrpJsonParser(const TrpJsonParser& other);
+        TrpJsonParser& operator=(const TrpJsonParser& other);
 };
 
 // ============================================================================

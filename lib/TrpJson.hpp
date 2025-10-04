@@ -87,8 +87,7 @@ enum TrpType {
     TRP_NUMBER,
     TRP_STRING,
     TRP_ARRAY,
-    TRP_OBJECT,
-    TRP_ERROR
+    TRP_OBJECT
 };
 
 // Token types for lexer
@@ -345,6 +344,8 @@ class TrpJsonBool : public ITrpJsonValue {
 // JSON Null class
 class TrpJsonNull : public ITrpJsonValue {
     public:
+        TrpJsonNull(void) {}
+        ~TrpJsonNull(void);
         TrpJsonType getType(void) const;
 };
 
@@ -366,6 +367,10 @@ class TrpJsonParser {
         ITrpJsonValue* parseNumber(token& current_token);
         ITrpJsonValue* parseLiteral(token& current_token);
         ITrpJsonValue* parseValue(token& current_token);
+
+        // Disable copy constructor and assignment
+        TrpJsonParser(const TrpJsonParser& other);
+        TrpJsonParser& operator=(const TrpJsonParser& other);
 
     public:
         // Constructors
@@ -394,10 +399,6 @@ class TrpJsonParser {
         // Output operations
         std::string astToString(void) const;
         void prettyPrint() const;
-
-    private:
-        TrpJsonParser(const TrpJsonParser& other);
-        TrpJsonParser& operator=(const TrpJsonParser& other);
 };
 
 // ============================================================================

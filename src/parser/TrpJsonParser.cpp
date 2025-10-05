@@ -26,7 +26,7 @@ bool TrpJsonParser::isParsed( void ) const { return parsed; }
 const token& TrpJsonParser::getLastError( void ) const { return last_err; }
 
 void TrpJsonParser::lastError( token t ) {
-    if ( t.type != T_ERROR ) t.value = "Expected token";
+    if ( t.type != T_ERROR ) t.value = "Unexpected token";
     std::cerr << lexer->getFileName() << ":"
     << t.line << ":"
     << t.col << " "

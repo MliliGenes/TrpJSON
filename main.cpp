@@ -13,6 +13,6 @@ int main(int ac, char **av) {
 
     const std::string validTestFile = av[1];
     testParser(validTestFile);
-
+    
     return 0;
 }

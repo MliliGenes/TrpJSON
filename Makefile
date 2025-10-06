@@ -5,6 +5,16 @@ CXX = c++
 
 CXXFLAGS = -Wall -Wextra -Werror -ggdb -std=c++98 -Iinclude
 
+INCLUDE_DIR = include
+
+INCLUDE_CORE_DIR = $(INCLUDE_DIR)/core
+INCLUDE_PARSER_DIR = $(INCLUDE_DIR)/parser
+INCLUDE_VALUES_DIR = $(INCLUDE_DIR)/values
+
+HEADER_FILES = $(wildcard $(INCLUDE_CORE_DIR)/*.hpp) \
+	$(wildcard $(INCLUDE_PARSER_DIR)/*.hpp) \
+	$(wildcard $(INCLUDE_VALUES_DIR)/*.hpp)
+
 SRCDIR = src
 TARGET = trpjson
 
@@ -48,7 +58,7 @@ endef
 
 all: $(TARGET)
 
-$(TARGET): $(OBJ)
+$(TARGET): $(OBJ) $(HEADER_FILES)
 	@echo "[$(DATE)] [Linking] $@"
 	@$(CXX) $(CXXFLAGS) $(OBJ) -o $@
 	@echo "[$(DATE)] [Built] $@ - 100% complete"
@@ -103,7 +113,7 @@ fclean: clean benchmark-clean lib-clean
 
 lib: $(STATIC_LIB)
 
-$(STATIC_LIB): $(LIB_OBJ)
+$(STATIC_LIB): $(LIB_OBJ) $(HEADER_FILES)
 	@echo "[$(DATE)] [Creating Static Library] $@"
 	@ar rcs $@ $(LIB_OBJ)
 	@echo "[$(DATE)] [Built] $@ - Static library ready for use!"

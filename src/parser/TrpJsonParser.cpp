@@ -94,6 +94,13 @@ bool TrpJsonParser::parse( void ) {
     token t = lexer->getNextToken();
     head = parseValue(t);
     
+    t = lexer->getNextToken();
+    if (t.type != T_END_OF_FILE) {
+        lastError( t );
+        clearAST();
+        return false;
+    }
+
     if ( head != NULL ) {
         parsed = true;
         return true;

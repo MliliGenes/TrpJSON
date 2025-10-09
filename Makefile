@@ -126,20 +126,20 @@ lib-clean:
 
 
 install: $(STATIC_LIB)
-    @echo "[$(DATE)] [Installing] TrpJSON library to system"
-    @sudo mkdir -p /usr/local/lib
-    @sudo mkdir -p /usr/local/include
-    @sudo cp $(STATIC_LIB) /usr/local/lib/
-    @sudo cp lib/TrpJson.hpp /usr/local/include/
-    @echo "[$(DATE)] [Installed] TrpJSON library to /usr/local/"
-    @echo "   Use: g++ -std=c++98 -ltrpjson your_file.cpp"
-    @echo "   Include: #include <TrpJson.hpp>"
+	@echo "[$(DATE)] [Installing] TrpJSON library to system"
+	@sudo mkdir -p /usr/local/lib
+	@sudo mkdir -p /usr/local/include
+	@sudo cp $(STATIC_LIB) /usr/local/lib/
+	@sudo cp lib/TrpJson.hpp /usr/local/include/
+	@echo "[$(DATE)] [Installed] TrpJSON library to /usr/local/"
+	@echo "   Use: g++ -std=c++98 -ltrpjson your_file.cpp"
+	@echo "   Include: #include <TrpJson.hpp>"
 
 uninstall:
-    @echo "[$(DATE)] [Uninstalling] TrpJSON library from system"
-    @sudo rm -f /usr/local/lib/libtrpjson.a
-    @sudo rm -f /usr/local/include/TrpJson.hpp
-    @echo "[$(DATE)] [Uninstalled] TrpJSON library removed"
+	@echo "[$(DATE)] [Uninstalling] TrpJSON library from system"
+	@sudo rm -f /usr/local/lib/libtrpjson.a
+	@sudo rm -f /usr/local/include/TrpJson.hpp
+	@echo "[$(DATE)] [Uninstalled] TrpJSON library removed"
 
 
 

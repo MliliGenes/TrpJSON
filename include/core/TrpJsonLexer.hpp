@@ -38,6 +38,7 @@ class TrpJsonLexer {
         // File data
         std::ifstream json_file;
         std::string file_name;
+        bool        reading_from_string;
 
         // Line data
         bool has_next_line;
@@ -76,6 +77,7 @@ class TrpJsonLexer {
 
     public:
         TrpJsonLexer(std::string file_name);
+        TrpJsonLexer(const char * json_string, bool flag);
         ~TrpJsonLexer(void);
 
         // the holy get next token; minishell refrance lmfao
@@ -86,7 +88,7 @@ class TrpJsonLexer {
         void reset( void );
 };
 
-#endif // TRPJSONLEXER_HPP
+#endif// TRPJSONLEXER_HPP
 
 // value  → object | array | string | number | true | false | null
 // object → '{' (string ':' value (',' string ':' value)*)? '}'

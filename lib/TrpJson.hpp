@@ -258,6 +258,7 @@ private:
 
 public:
     TrpJsonLexer(std::string file_name);
+    TrpJsonLexer(const char * json_string, bool flag);
     ~TrpJsonLexer();
     token getNextToken();
     const std::string getFileName() const;

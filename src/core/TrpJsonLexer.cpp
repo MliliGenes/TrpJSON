@@ -1,7 +1,7 @@
 #include "../../include/core/TrpJsonLexer.hpp"
 
 TrpJsonLexer::TrpJsonLexer(std::string _file_name) 
-    : file_name(_file_name), has_next_line(false), current_line(""), line(0), col(0) {
+    : file_name(_file_name), reading_from_string(false), has_next_line(false), current_line(""), line(0), col(0) {
     json_file.open(file_name.c_str(), std::ios::in);
     if (!json_file.is_open()) {
         std::cerr << "Error: Failed to open file: " << file_name << std::endl;
@@ -13,6 +13,17 @@ TrpJsonLexer::TrpJsonLexer(std::string _file_name)
     has_next_line = static_cast<bool>(std::getline(json_file, next_line));
 }
 
+TrpJsonLexer::TrpJsonLexer(const char *json_string, bool flag)
+    : reading_from_string(flag),
+      has_next_line(false),
+      line(0),
+      col(0)
+{
+    current_line = json_string;
+    current = current_line.begin();
+    line_end = current_line.end();
+}
+
 TrpJsonLexer::~TrpJsonLexer(void) {
     if (json_file.is_open()) {
         json_file.close();
@@ -20,6 +31,8 @@ TrpJsonLexer::~TrpJsonLexer(void) {
 }
 
 bool TrpJsonLexer::isOpen( void ) {
+    if (reading_from_string)
+        return true;
     return json_file.is_open();
 }
 
@@ -44,6 +57,9 @@ void TrpJsonLexer::reset( void ) {
 }
 
 bool TrpJsonLexer::loadNextLineIfNeeded() {
+    if (reading_from_string)
+        return !isAtEndOfLine();
+
     if (isAtEndOfLine()) {
         if (has_next_line) {
             current_line = next_line;
@@ -115,6 +131,8 @@ bool TrpJsonLexer::isAtEndOfLine() const {
 }
 
 bool TrpJsonLexer::isAtEnd() const {
+    if (reading_from_string)
+        return current == line_end;
     return !has_next_line && isAtEndOfLine();
 }
 

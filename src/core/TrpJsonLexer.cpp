@@ -175,6 +175,38 @@ token TrpJsonLexer::readString() {
                 case 'n': value += '\n'; break;
                 case 'r': value += '\r'; break;
                 case 't': value += '\t'; break;
+                case 'u': {
+                    std::string hex_str = "";
+                    // 1. Read exactly 4 hex characters
+                    for (int i = 0; i < 4; ++i) {
+                        char hex_char = getChar();
+                        if (hex_char == '\0' || isAtEndOfLine()) {
+                            return createErrorToken("Incomplete \\u unicode escape sequence");
+                        }
+                        if (!isxdigit(hex_char)) {
+                            std::string error_msg = "Invalid character in \\u escape sequence: ";
+                            error_msg += hex_char;
+                            return createErrorToken(error_msg);
+                        }
+                        hex_str += hex_char;
+                    }
+
+                    // 2. Convert the hex string to an integer code point
+                    unsigned int codepoint = std::stoul(hex_str, nullptr, 16);
+
+                    // 3. Convert the code point to a UTF-8 byte sequence and append to value
+                    if (codepoint <= 0x7F) {
+                        value += static_cast<char>(codepoint);
+                    } else if (codepoint <= 0x7FF) {
+                        value += static_cast<char>(0xC0 | ((codepoint >> 6) & 0x1F));
+                        value += static_cast<char>(0x80 | (codepoint & 0x3F));
+                    } else { // 0x0800 to 0xFFFF
+                        value += static_cast<char>(0xE0 | ((codepoint >> 12) & 0x0F));
+                        value += static_cast<char>(0x80 | ((codepoint >> 6) & 0x3F));
+                        value += static_cast<char>(0x80 | (codepoint & 0x3F));
+                    }
+                    break;
+                }
                 default:
                     std::string error_msg = "Invalid escape sequence: \\";
                     error_msg += c;

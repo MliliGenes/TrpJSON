@@ -104,7 +104,15 @@ fclean: clean benchmark-clean lib-clean
 
 
 
+wasm:
+	em++ lib/wasm_api.cpp $(shell find src -name '*.cpp') \
+	  -I include -O2 -s WASM=1 -s MODULARIZE=1 \
+	  -s EXPORT_NAME="TrpJson" -s ALLOW_MEMORY_GROWTH=1 \
+	  -s EXPORTED_FUNCTIONS='["_parse_json_to_ast","_free_ast","_get_node_type","_get_object_size","_get_object_key_at","_get_object_value_at","_get_array_size","_get_array_value_at","_get_value_string","_get_value_number","_get_value_bool","_malloc","_free"]' \
+	  -s EXPORTED_RUNTIME_METHODS='["ccall","cwrap","UTF8ToString","stringToUTF8","lengthBytesUTF8"]' \
+	  -o lib/trpjson.js
 
+.PHONY: wasm
 
 
 
